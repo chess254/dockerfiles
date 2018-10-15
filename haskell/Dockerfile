@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v1.0
+FROM codesignal/ubuntu-base:v1.1
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends haskell-platform \
