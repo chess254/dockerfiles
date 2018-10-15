@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v1.0
+FROM codesignal/ubuntu-base:v1.1
 
 RUN apt-get -qq update \
     && apt-get -qq -y install curl bzip2 --no-install-recommends \
