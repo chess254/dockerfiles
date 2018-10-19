@@ -20,7 +20,6 @@ RUN apt-get update \
 # libicu-dev
 # libcurl4-openssl-dev
 # clang
-        sudo \
         binutils \
         libedit2 \
         libxml2 \
