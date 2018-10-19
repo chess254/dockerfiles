@@ -1,9 +1,9 @@
 FROM codesignal/ubuntu-base:v1.1
 
-ENV SWIFT_BRANCH swift-3.1.1-release
-ENV SWIFT_VERSION swift-3.1.1-RELEASE
-ENV SWIFT_PLATFORM ubuntu16.04
-ENV SWIFT_PLATFORM_FOLDER ubuntu1604
+ENV SWIFT_BRANCH=swift-3.1.1-release \
+    SWIFT_VERSION=swift-3.1.1-RELEASE \
+    SWIFT_PLATFORM=ubuntu16.04 \
+    SWIFT_PLATFORM_FOLDER=ubuntu1604
 
 # Assuming unneeded: 
 # RUN npm install -g underscore request shelljs http sys jquery async connect validator  ws co when forever  debug && export NODE_PATH=/usr/local/lib/node_modules/
@@ -20,11 +20,14 @@ RUN apt-get update \
 # libicu-dev
 # libcurl4-openssl-dev
 # clang
+        sudo \
         binutils \
         libedit2 \
         libxml2 \
         curl \
         gnupg \
+        cmake \
+        git \
 # Download GPG keys, signature and Swift package, then unpack and cleanup
     && GNUPGHOME="$(mktemp -d)" \
     && SWIFT_ARCHIVE="${SWIFT_VERSION}-${SWIFT_PLATFORM}.tar.gz" \
