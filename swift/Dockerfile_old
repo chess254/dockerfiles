@@ -1,32 +1,39 @@
-FROM codesignal/ubuntu-base:v1.1
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install sudo
+RUN apt-get install -y npm
+RUN apt-get install -y nodejs
+RUN npm install -g underscore request shelljs http sys jquery async connect validator  ws co when forever  debug && export NODE_PATH=/usr/local/lib/node_modules/
+
+RUN apt-get install -y python-software-properties
+RUN apt-get install -y software-properties-common
 
 ENV SWIFT_BRANCH swift-3.1.1-release
 ENV SWIFT_VERSION swift-3.1.1-RELEASE
 ENV SWIFT_PLATFORM ubuntu16.04
 ENV SWIFT_PLATFORM_FOLDER ubuntu1604
 
-# Assuming unneeded: 
-# RUN npm install -g underscore request shelljs http sys jquery async connect validator  ws co when forever  debug && export NODE_PATH=/usr/local/lib/node_modules/
-# RUN apt-get install -y python-software-properties
-# RUN apt-get install -y software-properties-common
-
 # Install dependencies
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-# Assuming these packages already exist:
-# libpython2.7
-# ca-certificates
-# rsync
-# libicu-dev
-# libcurl4-openssl-dev
-# clang
+RUN apt-get update && apt-get install --no-install-recommends -y \
         binutils \
+        clang \
+        libcurl4-openssl-dev \
         libedit2 \
+        libicu-dev \
+        make \
+
+        libpython2.7 \
         libxml2 \
+
+        ca-certificates \
         curl \
+        git \
         gnupg \
+        rsync \
+    && rm -rf /var/lib/apt/lists/*
+
 # Download GPG keys, signature and Swift package, then unpack and cleanup
-    && GNUPGHOME="$(mktemp -d)" \
+RUN GNUPGHOME="$(mktemp -d)" \
     && SWIFT_ARCHIVE="${SWIFT_VERSION}-${SWIFT_PLATFORM}.tar.gz" \
     && SWIFT_ARCHIVE_SIGNATURE="${SWIFT_ARCHIVE}.sig" \
 
@@ -36,12 +43,10 @@ RUN apt-get update \
     && gpg --verify "${SWIFT_ARCHIVE_SIGNATURE}" \
     && tar -zxvf "${SWIFT_ARCHIVE}" --directory / --strip-components=1 \
 
-    && rm -r "${GNUPGHOME}" "${SWIFT_ARCHIVE}" "${SWIFT_ARCHIVE_SIGNATURE}" \
-    && rm -rf /var/lib/apt/lists/*
-
+    && rm -r "${GNUPGHOME}" "${SWIFT_ARCHIVE}" "${SWIFT_ARCHIVE_SIGNATURE}"
 
 #Install Objective-C
 ADD InstallObjectiveC.sh /root/InstallObjectiveC.sh
-RUN chmod 777 /root/InstallObjectiveC.sh \
-    && /bin/bash -c "/root/InstallObjectiveC.sh"
+RUN chmod 777 /root/InstallObjectiveC.sh
+RUN /bin/bash -c "/root/InstallObjectiveC.sh"
 ENV LD_LIBRARY_PATH="/root/GNUstep/Library/Libraries:/usr/GNUstep/Local/Library/Libraries:/usr/GNUstep/System/Library/Libraries:${LD_LIBRARY_PATH}"
