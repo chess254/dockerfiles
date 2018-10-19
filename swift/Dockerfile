@@ -33,6 +33,7 @@ RUN apt-get update \
 # Cleanup
     && rm -r "${GNUPGHOME}" "${SWIFT_ARCHIVE}" "${SWIFT_ARCHIVE_SIGNATURE}" \
     && apt-get -qq -y remove curl cmake git binutils gnupg \
+    && apt-get -qq -y autoremove \
     && rm -rf /var/lib/apt/lists/*
 
 ENV LD_LIBRARY_PATH="/root/GNUstep/Library/Libraries:/usr/GNUstep/Local/Library/Libraries:/usr/GNUstep/System/Library/Libraries:${LD_LIBRARY_PATH}"
