@@ -32,7 +32,7 @@ RUN apt-get update \
     && /bin/bash -c "/root/InstallObjectiveC.sh" \
 # Cleanup
     && rm -r "${GNUPGHOME}" "${SWIFT_ARCHIVE}" "${SWIFT_ARCHIVE_SIGNATURE}" \
-    && apt-get -qq -y remove curl cmake git binutils gnupg \
+    && apt-get -qq -y remove curl cmake git \
     && apt-get -qq -y autoremove \
     && rm -rf /var/lib/apt/lists/*
 
