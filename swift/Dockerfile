@@ -12,12 +12,18 @@ ADD InstallObjectiveC.sh /root/InstallObjectiveC.sh
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         binutils \
+        clang \
+        libcurl4-openssl-dev \
+        libicu-dev \
+        make \
         libedit2 \
         libxml2 \
+        ca-certificates \
         curl \
+        git \
         gnupg \
         cmake \
-        git \
+        rsync \
 # Download GPG keys, signature and Swift package, then unpack and cleanup
     && GNUPGHOME="$(mktemp -d)" \
     && SWIFT_ARCHIVE="${SWIFT_VERSION}-${SWIFT_PLATFORM}.tar.gz" \
