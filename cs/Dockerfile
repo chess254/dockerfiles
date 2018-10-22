@@ -11,7 +11,8 @@ RUN apt-get update \
        mono-xsp4-base \
        mono-complete \
        ca-certificates-mono \
-       fsharp
+       fsharp \
+    && rm -rf /var/lib/apt/lists/*
 #Additional libs for CS
 RUN wget https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-8.0.11-noinstall.zip -P /tmp/ \
     && unzip /tmp/mysql-connector-net-8.0.11-noinstall.zip -d /tmp && cd /tmp/v4.5.2 && cp MySql.Data.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i MySql.Data.dll -package MySql.Data \
