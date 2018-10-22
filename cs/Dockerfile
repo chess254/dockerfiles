@@ -13,13 +13,8 @@ RUN apt-get update \
        ca-certificates-mono \
        fsharp \
 #Additional libs for CS
-    && wget https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-8.0.11-noinstall.zip -P /tmp/ \
+RUN wget https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-8.0.11-noinstall.zip -P /tmp/ \
     && unzip /tmp/mysql-connector-net-8.0.11-noinstall.zip -d /tmp && cd /tmp/v4.5.2 && cp MySql.Data.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i MySql.Data.dll -package MySql.Data \
     && wget https://github.com/JamesNK/Newtonsoft.Json/releases/download/11.0.2/Json110r2.zip -P /tmp/ \
-    && rm -rf /tmp/Newtonsoft \
-    && unzip /tmp/Json110r2.zip -d /tmp/Newtonsoft || : \
-    && cd /tmp/Newtonsoft/Bin/net45 \
-    && cp Newtonsoft.Json.dll /usr/lib/mono/ \
-    && cd /usr/lib/mono/ \
-    && gacutil -i Newtonsoft.Json.dll -package Newtonsoft.Json \
+    && rm -rf /tmp/Newtonsoft && unzip /tmp/Json110r2.zip -d /tmp/Newtonsoft || : && cd /tmp/Newtonsoft/Bin/net45 && cp Newtonsoft.Json.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i Newtonsoft.Json.dll -package Newtonsoft.Json \
     && rm -rf /var/lib/apt/lists/*
