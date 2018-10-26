@@ -12,8 +12,6 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
         maven \
     && rm -rf /var/lib/apt/lists/*
 
-ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
-
 # install gradle
 RUN apt-get update \
     && apt-get install -y --no-install-recommends unzip \
@@ -25,4 +23,5 @@ RUN apt-get update \
     && rm /opt/gradle-4.10.2-bin.zip \
     && rm -rf /var/lib/apt/lists/*
 
-ENV PATH /opt/gradle/gradle-4.10.2/bin:$PATH
+ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
+    PATH=/opt/gradle/gradle-4.10.2/bin:$PATH
