@@ -60,10 +60,18 @@ RUN add-apt-repository -y ppa:longsleep/golang-backports && apt-get update
 RUN apt-get install -y golang-go
 
 #grab oracle java (auto accept licence)
-#RUN apt-get install -y default-jdk
-RUN add-apt-repository -y ppa:linuxuprising/java && apt-get update
-RUN echo oracle-java10-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-RUN apt-get install -y oracle-java10-installer oracle-java10-set-default libjackson2-core-java libjackson2-databind-java
+RUN add-apt-repository -y ppa:linuxuprising/java \
+    && apt-get update \
+    && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
+    && apt-get install -y --no-install-recommends \
+        oracle-java11-installer \
+        oracle-java11-set-default \
+        libjackson2-core-java \
+        libjackson2-databind-java \
+        libmysql-java \
+        maven \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
 RUN wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb
