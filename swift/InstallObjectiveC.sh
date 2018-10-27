@@ -23,16 +23,16 @@ APPS=false
 PROMPT=false
 
 # Install Requirements
-sudo dpkg --add-architecture i386
-sudo apt update
+dpkg --add-architecture i386
+apt update
 
 echo -e "\n\n${GREEN}Installing dependencies...${NC}"
-sudo apt -y install clang git cmake libffi-dev libxml2-dev \
+apt -y install clang git cmake libffi-dev libxml2-dev \
 libgnutls28-dev libicu-dev libblocksruntime-dev libkqueue-dev libpthread-workqueue-dev autoconf libtool \
 libjpeg-dev libtiff-dev libffi-dev libcairo-dev libx11-dev:i386 libxt-dev libxft-dev
 
 if [ "$APPS" = true ] ; then
-  sudo apt -y install curl
+  apt -y install curl
 fi
 
 # Create build directory
@@ -68,7 +68,7 @@ cd tools-make
 git checkout `git rev-list -1 --first-parent --before=2017-04-06 master` # fixes segfault, should probably be looked at.
 ./configure --with-layout=gnustep --enable-objc-nonfragile-abi --enable-objc-arc
 make -j4
-sudo -E make install
+make install
 
 . /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
 echo ". /usr/GNUstep/System/Library/Makefiles/GNUstep.sh" >> ~/.bashrc
@@ -83,8 +83,8 @@ rm -Rf build
 mkdir build && cd build
 ../configure  --prefix=/usr
 make
-sudo make install
-sudo ldconfig
+make install
+ldconfig
 
 showPrompt
 
@@ -97,8 +97,8 @@ rm -Rf build
 mkdir build && cd build
 cmake ../ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang -DCMAKE_ASM_COMPILER=clang -DTESTS=OFF
 cmake --build .
-sudo -E make install
-sudo ldconfig
+make install
+ldconfig
 
 export LDFLAGS=-ldispatch
 
@@ -112,7 +112,7 @@ echo -e "${GREEN}Building GNUstep-make for the second time...${NC}"
 cd ../../tools-make
 ./configure --with-layout=gnustep --enable-objc-nonfragile-abi --enable-objc-arc
 make -j4
-sudo -E make install
+make install
 
 . /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
 
@@ -124,7 +124,7 @@ echo -e "${GREEN}Building GNUstep-base...${NC}"
 cd ../libs-base/
 ./configure
 make -j4
-sudo -E make install
+make install
 
 showPrompt
 
@@ -134,7 +134,7 @@ echo -e "${GREEN} Building GNUstep-gui...${NC}"
 cd ../libs-gui
 ./configure
 make -j4
-sudo -E make install
+make install
 
 showPrompt
 
@@ -144,7 +144,7 @@ echo -e "${GREEN}Building GNUstep-back...${NC}"
 cd ../libs-back
 ./configure
 make -j4
-sudo -E make install
+make install
 
 showPrompt
 
@@ -154,14 +154,14 @@ if [ "$APPS" = true ] ; then
   echo -e "${GREEN}Building ProjectCenter...${NC}"
   cd ../apps-projectcenter/
   make -j4
-  sudo -E make install
+  make install
 
   showPrompt
 
   echo -e "${GREEN}Building Gorm...${NC}"
   cd ../apps-gorm/
   make -j4
-  sudo -E make install
+  make install
 
   showPrompt
 
@@ -170,7 +170,7 @@ if [ "$APPS" = true ] ; then
   cd ../apps-gworkspace/
   ./configure
   make -j4
-  sudo -E make install
+  make install
 
   showPrompt
 
@@ -178,7 +178,7 @@ if [ "$APPS" = true ] ; then
   echo -e "${GREEN}Building SystemPreferences...${NC}"
   cd ../apps-systempreferences/
   make -j4
-  sudo -E make install
+  make install
 
 fi
 
