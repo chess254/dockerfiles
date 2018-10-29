@@ -10,6 +10,7 @@ RUN apt-get update \
        mono-xsp4 \
        mono-xsp4-base \
        mono-complete \
+       mono-vbnc \
        ca-certificates-mono \
        fsharp \
     && rm -rf /var/lib/apt/lists/*
