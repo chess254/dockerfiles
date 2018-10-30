@@ -17,5 +17,5 @@ RUN JULIA_PATH=/usr/local/julia \
   && apt-get remove -qq -y curl \
   && rm -rf /var/lib/apt/lists/* julia.tar.gz*
 
-ENV JULIA_PATH=/usr/local/julia \
-    PATH=$JULIA_PATH/bin:$PATH
+ENV JULIA_PATH=/usr/local/julia
+ENV PATH=$JULIA_PATH/bin:$PATH
