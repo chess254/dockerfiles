@@ -9,10 +9,10 @@ RUN apt-get update \
   && unzip apache-groovy-binary-${GROOVY_VERSION}.zip \
   && mv groovy-${GROOVY_VERSION} /opt/groovy \
   && rm apache-groovy-binary-${GROOVY_VERSION}.zip \
-# Cleanup, having some issues with held packages so calling autoremove and autoclean to resolve them
-  && apt-get autoclean \
-  && apt-get autoremove \
-  && apt-get remove -qq -y wget unzip \
+# Skipping Cleanup, having some issues with held packages 
+  # && apt-get autoclean \
+  # && apt-get autoremove \
+  # && apt-get remove -qq -y wget unzip \
   && rm -rf /var/lib/apt/lists/*
 
 ENV GROOVY_HOME=/opt/groovy \
