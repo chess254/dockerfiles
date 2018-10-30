@@ -6,8 +6,7 @@ RUN apt-get update \
     && dpkg -i erlang-solutions_1.0_all.deb \
     && apt-get update \
 #Install Erland and High-Performance Erlang Project compiler
-    && apt-get install -y --force-yes erlang erlang-base-hipe \
-    && apt-get install -y erlang-base-hipe \
+    && apt-get install -y --force-yes --no-install-recommends erlang erlang-base-hipe \
 # Cleanup
     && apt-get remove -qq -y wget \
     && rm erlang-solutions_1.0_all.deb \
