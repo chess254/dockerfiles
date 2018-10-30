@@ -1,25 +1,9 @@
 FROM codesignal/java:v1.1
 
-ENV SCALA_VERSION=2.12.7 \
-    SBT_VERSION=1.2.6
-
-# Scala Expects this file to exist
-# touch /usr/lib/jvm/java-11-openjdk-amd64/release
-RUN  \
-    apt-get update \
-    && apt-get install -y --no-install-recommends wget curl \
-# Install Scala, pipe curl into tar.
-    && curl -fsL https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ \
-    && echo >> /root/.bashrc  \
-# Install SBT
-    # && curl -L -o sbt-$SBT_VERSION.deb https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb  \
-    # && dpkg -i sbt-$SBT_VERSION.deb  \
-    # && rm sbt-$SBT_VERSION.deb  \
-    # && apt-get update \
-    # && apt-get install sbt  \
-    # && sbt sbtVersion \
-# Skip Clean up, having issue with pkgProblmeResolver.
-    # && apt-get remove -qq -y wget curl \
-    && rm -rf /var/lib/apt/lists/*
-
-ENV PATH=~/scala-$SCALA_VERSION/bin:$PATH
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends wget \
+    && wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb \
+    && dpkg -i scala-2.12.5.deb \
+    && apt-get update \
+    && apt-get install -y scala \
+    && rm -rf scala-2.12.5.deb  /var/lib/apt/lists/*
