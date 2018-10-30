@@ -18,8 +18,8 @@ RUN  \
     # && apt-get update \
     # && apt-get install sbt  \
     # && sbt sbtVersion \
-# Clean up
-    && apt-get remove -qq -y wget curl \
+# Skip Clean up, having issue with pkgProblmeResolver.
+    # && apt-get remove -qq -y wget curl \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH=~/scala-$SCALA_VERSION/bin:$PATH
