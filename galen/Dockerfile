@@ -7,10 +7,11 @@ RUN apt-get update \
     dbus-x11 \
     unzip \
     wget \
-    sudo \
     && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
     && unzip /tmp/galen-ide.zip -d /tmp \
     && cd /tmp/galen-ide \
+# The setup script uses sudo, let's remove it.
+    && cat /tmp/galen-ide/assembleAndInstall.sh | sed -e 's/sudo //g' > /tmp/galen-ide/assembleAndInstall.sh \
     && . /tmp/galen-ide/assembleAndInstall.sh \
 #Install Firefox 46 version. This exact version is needed for galen-ide
     && cd /usr/local \
