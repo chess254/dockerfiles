@@ -7,7 +7,8 @@ RUN KOTLIN_VERSION=1.2.40 \
   && wget $KOTLIN_COMPILER_URL -O /tmp/a.zip \
   && unzip /tmp/a.zip -d /opt  \
   && rm /tmp/a.zip \
-  && apt-get remove -qq -y unzip wget zip \
+# Having an issue with apt, skipping cleanup
+  # && apt-get remove -qq -y unzip wget zip \
   && rm -rf /var/lib/apt/lists/*
 
 ENV PATH $PATH:/opt/kotlinc/bin
