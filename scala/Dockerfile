@@ -4,8 +4,9 @@ ENV SCALA_VERSION=2.12.7 \
     SBT_VERSION=1.2.6
 
 # Scala Expects this file to exist
-RUN touch /usr/lib/jvm/java-11-openjdk-amd64/release \
-    && apt-get update \
+# touch /usr/lib/jvm/java-11-openjdk-amd64/release
+RUN  \
+    apt-get update \
     && apt-get install -y --no-install-recommends wget curl \
 # Install Scala, pipe curl into tar.
     && curl -fsL https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ \
