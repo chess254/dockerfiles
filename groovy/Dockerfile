@@ -15,5 +15,5 @@ RUN apt-get update \
   # && apt-get remove -qq -y wget unzip \
   && rm -rf /var/lib/apt/lists/*
 
-ENV GROOVY_HOME=/opt/groovy \
-    PATH=$GROOVY_HOME/bin/:$PATH
+ENV GROOVY_HOME=/opt/groovy
+ENV PATH=$GROOVY_HOME/bin/:$PATH
