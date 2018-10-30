@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v1.1
+FROM codesignal/ubuntu-erlang:v1.1
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends elixir \
