@@ -6,7 +6,8 @@ RUN apt-get update \
     jq \
     dbus-x11 \
     unzip \
-    wget\
+    wget \
+    sudo \
     && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
     && unzip /tmp/galen-ide.zip -d /tmp \
     && cd /tmp/galen-ide \
