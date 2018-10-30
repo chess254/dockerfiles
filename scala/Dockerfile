@@ -1,7 +1,7 @@
 FROM codesignal/ubuntu-base:v1.1
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget \
+    && apt-get install -y --no-install-recommends wget java8-runtime-headless \
     && wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb \
     && dpkg -i scala-2.12.5.deb \
     && apt-get update \
