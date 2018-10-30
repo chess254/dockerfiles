@@ -1,12 +1,23 @@
-FROM codesignal/ubuntu-base:v1.1
+FROM codesignal/java:v1.1
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget java8-runtime-headless \
-    && wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb \
-    && dpkg -i scala-2.12.5.deb \
+ENV SCALA_VERSION=2.12.7 \
+    SBT_VERSION=1.2.6
+
+# Scala Expects this file to exist
+RUN touch /usr/lib/jvm/java-11-openjdk-amd64/release \
     && apt-get update \
-    && apt-get install -y --no-install-recommends scala \
-# Remove deb file and clean up
-    && apt-get remove -qq -y wget \
-    && rm scala-2.15.5.deb \
+    && apt-get install -y --no-install-recommends wget curl \
+# Install Scala, pipe curl into tar.
+    && curl -fsL https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ \
+    && echo >> /root/.bashrc  \
+    && echo "export PATH=~/scala-$SCALA_VERSION/bin:$PATH" >> /root/.bashrc \
+# Install SBT
+    && curl -L -o sbt-$SBT_VERSION.deb https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb  \
+    && dpkg -i sbt-$SBT_VERSION.deb  \
+    && rm sbt-$SBT_VERSION.deb  \
+    && apt-get update \
+    && apt-get install sbt  \
+    && sbt sbtVersion \
+# Clean up
+    && apt-get remove -qq -y wget curl \
     && rm -rf /var/lib/apt/lists/*
