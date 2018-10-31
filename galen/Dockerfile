@@ -22,6 +22,8 @@ RUN apt-get update \
     wget \
     curl \
     libgtk-3-dev \
+    libasound2 \
+    libasound2-dev \
     && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
     && unzip /tmp/galen-ide.zip -d /tmp \
     && cd /tmp/galen-ide \
