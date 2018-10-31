@@ -7,6 +7,7 @@ RUN apt-get update \
     dbus-x11 \
     unzip \
     wget \
+    xvfb \
     && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
     && unzip /tmp/galen-ide.zip -d /tmp \
     && cd /tmp/galen-ide \
