@@ -1,13 +1,25 @@
 FROM codesignal/java:v1.1
 
-#Installing Galen framework and related stuff
+# Add the two scripts
+ADD xvfb_init /etc/init.d/xvfb
+ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
+
+# Install xvfb
 RUN apt-get update \
+    && apt-get install -y --no-install-recommends xvfb \
+# Let added scripts be executable
+    && chmod a+x /etc/init.d/xvfb \
+    && chmod a+x /usr/bin/xvfb-daemon-run \
+# Install Xvfb init script
+    && update-rc.d xvfb defaults \
+# Xvfb stuff should be set up.
+#Installing Galen framework and related stuff
+    && apt-get update \
     && apt-get install -y --no-install-recommends \
     jq \
     dbus-x11 \
     unzip \
     wget \
-    xvfb \
     && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
     && unzip /tmp/galen-ide.zip -d /tmp \
     && cd /tmp/galen-ide \
