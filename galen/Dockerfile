@@ -17,7 +17,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
+    && apt-get install -y --no-install-recommends nodejs
 #    && apt-get -qq -y remove curl \
 #    && apt-get -qq -y autoremove \
 #    && apt-get autoclean \
