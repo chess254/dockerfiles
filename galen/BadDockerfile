@@ -26,16 +26,6 @@ RUN apt-get install -y gcc g++ libjson-perl perl python
 #Install ML libraries for python
 RUN apt-get install -y python-dev python3-dev
 
-#Install Mono C# and F#
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-RUN echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | tee /etc/apt/sources.list.d/mono-official.list
-RUN apt-get update
-RUN apt-get install -y mono-mcs mono-devel mono-xsp4 mono-xsp4-base mono-complete ca-certificates-mono fsharp
-
-
-RUN apt-get install -y mono-vbnc
-RUN apt-get install -y npm
-
 RUN apt-get install -y sudo
 
 RUN apt-get install -y python-software-properties
