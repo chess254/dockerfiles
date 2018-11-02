@@ -1,0 +1,174 @@
+FROM codesignal/ubuntu-base:v1.1
+
+# Set proper locale
+RUN apt-get clean && apt-get update
+RUN apt-get install -y locales
+RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+
+# Installing xvfb and related stuff
+# RUN apt-get install -y libxtst6
+# RUN apt-get install -y libxext6
+RUN apt-get update
+RUN apt-get -f install
+RUN apt-get install -fy xvfb
+
+# Install Xvfb init script
+ADD xvfb_init /etc/init.d/xvfb
+RUN chmod a+x /etc/init.d/xvfb
+RUN update-rc.d xvfb defaults
+ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
+RUN chmod a+x /usr/bin/xvfb-daemon-run
+
+#Install all the languages/compilers we are supporting.
+RUN apt-get install -y gcc g++ libjson-perl perl python
+
+#Install ML libraries for python
+RUN apt-get install -y python-dev python3-dev
+
+#Install Mono C# and F#
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+RUN echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | tee /etc/apt/sources.list.d/mono-official.list
+RUN apt-get update
+RUN apt-get install -y mono-mcs mono-devel mono-xsp4 mono-xsp4-base mono-complete ca-certificates-mono fsharp
+
+
+RUN apt-get install -y mono-vbnc
+RUN apt-get install -y npm
+
+RUN apt-get install -y sudo
+
+RUN apt-get install -y python-software-properties
+RUN apt-get install -y curl libcurl4-openssl-dev wget
+#Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+RUN apt-get install -y nodejs
+
+RUN apt-get install -y maven
+
+RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug && export NODE_PATH=/usr/lib/node_modules/
+
+#prepare for Java download
+RUN apt-get install -y python-software-properties
+RUN apt-get install -y software-properties-common
+
+#Install GO
+RUN add-apt-repository -y ppa:longsleep/golang-backports && apt-get update
+RUN apt-get install -y golang-go
+
+#grab oracle java (auto accept licence)
+RUN add-apt-repository -y ppa:linuxuprising/java \
+    && apt-get update \
+    && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
+    && apt-get install -y --no-install-recommends \
+        oracle-java11-installer \
+        oracle-java11-set-default \
+        libjackson2-core-java \
+        libjackson2-databind-java \
+        libmysql-java \
+        maven \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
+
+RUN wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb
+RUN dpkg -i scala-2.12.5.deb && apt-get update
+RUN apt-get install -y scala
+
+#Installing mysql server
+RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
+RUN echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+RUN apt-get update && \
+  apt-get -y install mysql-server-5.7 && \
+  mkdir -p /var/lib/mysql && \
+  mkdir -p /var/run/mysqld && \
+  mkdir -p /var/log/mysql && \
+  chown -R mysql:mysql /var/lib/mysql && \
+  chown -R mysql:mysql /var/run/mysqld && \
+  chown -R mysql:mysql /var/log/mysql
+# UTF-8 and bind-address
+RUN sed -i -e "$ a [client]\n\n[mysql]\n\n[mysqld]"  /etc/mysql/my.cnf && \
+  sed -i -e "s/\(\[client\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf && \
+  sed -i -e "s/\(\[mysql\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf && \
+  sed -i -e "s/\(\[mysqld\]\)/\1\ninit_connect='SET NAMES utf8'\ncharacter-set-server = utf8\ncollation-server=utf8_unicode_ci\nbind-address = 0.0.0.0/g" /etc/mysql/my.cnf
+
+
+RUN apt-get install -y bc
+RUN echo "mysql ALL = NOPASSWD: /usr/sbin/service mysql start" | cat >> /etc/sudoers
+
+#Installing Galen framework and related stuff
+# RUN npm install -g galenframework-cli
+
+#RUN add-apt-repository ppa:mozillateam/firefox-stable
+#RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+#RUN apt-get update
+
+#Installing Galen framework and related stuff
+RUN apt-get install -y jq dbus-x11 unzip
+RUN wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/
+RUN unzip /tmp/galen-ide.zip -d /tmp && cd /tmp/galen-ide && . /tmp/galen-ide/assembleAndInstall.sh
+
+
+#Install PHP 7
+RUN add-apt-repository ppa:ondrej/php && apt-get update
+RUN apt-get install -y php7.2
+
+#Install Firefox 46 version. This exact version is needed for galen-ide
+RUN cd /usr/local && wget http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/46.0.1/linux-x86_64/en-US/firefox-46.0.1.tar.bz2 && tar xvjf firefox-46.0.1.tar.bz2 && ln -s /usr/local/firefox/firefox /usr/bin/firefox
+ENV DISPLAY :99
+
+RUN apt-get install -y clang
+
+
+#Install Common Lisp
+RUN apt-get install -y libsigsegv2 libffcall1 libreadline5
+#RUN apt-get install -y sbcl
+RUN wget http://ftp.debian.org/debian/pool/main///c/clisp/clisp_2.49-8.1_amd64.deb
+RUN dpkg -i clisp_2.49-8.1_amd64.deb
+RUN wget https://beta.quicklisp.org/quicklisp.lisp -P /tmp
+RUN echo "(quicklisp-quickstart:install)\n(ql:add-to-init-file)\n" >> /tmp/quicklisp.lisp
+RUN printf '\n' | clisp /tmp/quicklisp.lisp
+#RUN touch /tmp/install.lisp
+#RUN echo "(load \"~/quicklisp/setup.lisp\")\n(ql:quickload \"alexandria\")\n(ql:quickload \"cl-ppcre\")\n" > /tmp/install.lisp
+#RUN sbcl --non-interactive --load /tmp/install.lisp
+#RUN clisp /tmp/install.lisp
+
+
+
+#Install Kotlin
+RUN apt-get install -y zip
+ENV KOTLIN_VERSION 1.2.40
+ENV KOTLIN_COMPILER_URL https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip
+RUN wget $KOTLIN_COMPILER_URL -O /tmp/a.zip && \
+    unzip /tmp/a.zip -d /opt && \
+    rm /tmp/a.zip
+ENV PATH $PATH:/opt/kotlinc/bin
+
+#Install Nim
+RUN add-apt-repository -y ppa:jonathonf/nimlang && apt-get update
+RUN apt-get install -y nim
+
+
+# Enable HTTPS for apt.
+RUN apt-get install -y apt-transport-https
+
+#Additional libs for python
+RUN apt-get install -y libmysqlclient-dev
+RUN pip install requests configparser mysql-connector MySql-Python SQLAlchemy
+RUN pip3 install requests mysql-connector PyMySQL SQLAlchemy
+
+#Additional libs for php
+RUN apt-get update
+RUN apt-get install -y php-curl
+RUN apt-get install -y php-mysql
+
+#Additional libs for CS
+RUN wget https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-8.0.11-noinstall.zip -P /tmp/
+RUN unzip /tmp/mysql-connector-net-8.0.11-noinstall.zip -d /tmp && cd /tmp/v4.5.2 && cp MySql.Data.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i MySql.Data.dll -package MySql.Data
+RUN wget https://github.com/JamesNK/Newtonsoft.Json/releases/download/11.0.2/Json110r2.zip -P /tmp/
+RUN rm -rf /tmp/Newtonsoft && unzip /tmp/Json110r2.zip -d /tmp/Newtonsoft || : && cd /tmp/Newtonsoft/Bin/net45 && cp Newtonsoft.Json.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i Newtonsoft.Json.dll -package Newtonsoft.Json
+
+#MySQL and PostgreSQL libs for Java, C++ and Perl
+RUN apt-get update
+RUN apt-get install -y libmysql-java libssl-dev libdbi-perl libdbd-mysql-perl postgresql postgresql-contrib postgresql-client libpq5 libpq-dev
