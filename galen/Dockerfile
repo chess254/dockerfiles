@@ -6,12 +6,12 @@ ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 # Install xvfb
 RUN apt-get update \
+    && apt-get -f install \
     && apt-get install -y xvfb \
 # Let added scripts be executable
     && chmod a+x /etc/init.d/xvfb \
-    && chmod a+x /usr/bin/xvfb-daemon-run \
-# Install Xvfb init script
     && update-rc.d xvfb defaults \
+    && chmod a+x /usr/bin/xvfb-daemon-run \
 # Xvfb stuff should be set up.
 #Installing Galen framework and related stuff
     && apt-get update \
