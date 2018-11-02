@@ -41,9 +41,6 @@ RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sy
 RUN apt-get install -y python-software-properties
 RUN apt-get install -y software-properties-common
 
-#Install GO
-RUN add-apt-repository -y ppa:longsleep/golang-backports && apt-get update
-RUN apt-get install -y golang-go
 
 #grab oracle java (auto accept licence)
 RUN add-apt-repository -y ppa:linuxuprising/java \
@@ -60,9 +57,6 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
-RUN wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb
-RUN dpkg -i scala-2.12.5.deb && apt-get update
-RUN apt-get install -y scala
 
 #Installing mysql server
 RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
@@ -108,22 +102,6 @@ ENV DISPLAY :99
 
 RUN apt-get install -y clang
 
-
-#Install Common Lisp
-RUN apt-get install -y libsigsegv2 libffcall1 libreadline5
-#RUN apt-get install -y sbcl
-RUN wget http://ftp.debian.org/debian/pool/main///c/clisp/clisp_2.49-8.1_amd64.deb
-RUN dpkg -i clisp_2.49-8.1_amd64.deb
-RUN wget https://beta.quicklisp.org/quicklisp.lisp -P /tmp
-RUN echo "(quicklisp-quickstart:install)\n(ql:add-to-init-file)\n" >> /tmp/quicklisp.lisp
-RUN printf '\n' | clisp /tmp/quicklisp.lisp
-#RUN touch /tmp/install.lisp
-#RUN echo "(load \"~/quicklisp/setup.lisp\")\n(ql:quickload \"alexandria\")\n(ql:quickload \"cl-ppcre\")\n" > /tmp/install.lisp
-#RUN sbcl --non-interactive --load /tmp/install.lisp
-#RUN clisp /tmp/install.lisp
-
-
-
 #Install Kotlin
 RUN apt-get install -y zip
 ENV KOTLIN_VERSION 1.2.40
@@ -132,10 +110,6 @@ RUN wget $KOTLIN_COMPILER_URL -O /tmp/a.zip && \
     unzip /tmp/a.zip -d /opt && \
     rm /tmp/a.zip
 ENV PATH $PATH:/opt/kotlinc/bin
-
-#Install Nim
-RUN add-apt-repository -y ppa:jonathonf/nimlang && apt-get update
-RUN apt-get install -y nim
 
 
 # Enable HTTPS for apt.
@@ -150,12 +124,6 @@ RUN pip3 install requests mysql-connector PyMySQL SQLAlchemy
 RUN apt-get update
 RUN apt-get install -y php-curl
 RUN apt-get install -y php-mysql
-
-#Additional libs for CS
-RUN wget https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-8.0.11-noinstall.zip -P /tmp/
-RUN unzip /tmp/mysql-connector-net-8.0.11-noinstall.zip -d /tmp && cd /tmp/v4.5.2 && cp MySql.Data.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i MySql.Data.dll -package MySql.Data
-RUN wget https://github.com/JamesNK/Newtonsoft.Json/releases/download/11.0.2/Json110r2.zip -P /tmp/
-RUN rm -rf /tmp/Newtonsoft && unzip /tmp/Json110r2.zip -d /tmp/Newtonsoft || : && cd /tmp/Newtonsoft/Bin/net45 && cp Newtonsoft.Json.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i Newtonsoft.Json.dll -package Newtonsoft.Json
 
 #MySQL and PostgreSQL libs for Java, C++ and Perl
 RUN apt-get update
