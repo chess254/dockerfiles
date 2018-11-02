@@ -121,8 +121,6 @@ RUN apt-get install -y apt-transport-https
 
 #Additional libs for python
 RUN apt-get install -y libmysqlclient-dev
-RUN pip install requests configparser mysql-connector MySql-Python SQLAlchemy
-RUN pip3 install requests mysql-connector PyMySQL SQLAlchemy
 
 #Additional libs for php
 RUN apt-get update
