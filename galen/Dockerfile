@@ -1,4 +1,46 @@
-FROM codesignal/java:v1.1
+FROM ubuntu:16.04
+
+# Set proper locale
+RUN apt-get clean \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
+      bc \
+      locales \
+      software-properties-common \
+      build-essential \
+ # && rm -rf /var/lib/apt/lists/* \
+  && locale-gen en_US.UTF-8
+
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+
+#Install Node.js
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+#    && apt-get -qq -y remove curl \
+#    && apt-get -qq -y autoremove \
+#    && apt-get autoclean \
+#    && rm -rf /var/lib/apt/lists/*
+
+#grab oracle java (auto accept licence)
+RUN apt-get update && apt-get install -f -y sudo
+
+RUN add-apt-repository -y ppa:linuxuprising/java \
+    && apt-get update \
+    && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
+    && apt-get install -y --no-install-recommends \
+        oracle-java11-installer \
+        oracle-java11-set-default \
+        libjackson2-core-java \
+        libjackson2-databind-java \
+        libmysql-java \
+        maven \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
+
+
 
 # Add the two scripts
 ADD xvfb_init /etc/init.d/xvfb
