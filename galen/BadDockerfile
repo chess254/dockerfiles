@@ -241,7 +241,7 @@ ENV PATH $GROOVY_HOME/bin/:$PATH
 RUN npm install -g typescript @types/node@9.6.7
 
 #Install Tcl
-RUN apt-get install -y tcl8.6 tcllib
+RUN apt-get install -f -y tcl8.6 tcllib
 
 #Install Dart 1.24.2
 # Enable HTTPS for apt.
