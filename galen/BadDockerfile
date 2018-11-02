@@ -38,7 +38,7 @@ RUN cabal update && cabal install JSON
 
 RUN apt-get install -y mono-vbnc
 
-RUN apt-get install -y sudo
+RUN apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y sudo
 
 RUN apt-get install -y python-software-properties
 RUN apt-get install -y curl libcurl4-openssl-dev wget
