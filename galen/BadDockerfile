@@ -240,6 +240,8 @@ ENV PATH $GROOVY_HOME/bin/:$PATH
 # For @types/node@9.6.7 see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/25342
 RUN npm install -g typescript @types/node@9.6.7
 
+RUN rm /etc/apt/sources.list && apt-get update
+
 #Install Tcl
 RUN apt-get install -f -y tcl8.6 tcllib
 
