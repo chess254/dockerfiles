@@ -41,6 +41,7 @@ ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 # Install xvfb
 RUN apt-get update \
+    && apt-get install -f \
     && apt-get install -y xvfb \
 # Let added scripts be executable
     && chmod a+x /etc/init.d/xvfb \
