@@ -3,35 +3,32 @@ FROM ubuntu:16.04
 # Set proper locale
 RUN apt-get clean \
   && apt-get update \
-  && apt-get install -y --no-install-recommends \
+  && apt-get install -y \
       bc \
       locales \
       software-properties-common \
       build-essential \
-  && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 #Install Java, Node.js, and sudo
 RUN apt-get update \
-    && apt-get install -y -f --no-install-recommends curl sudo \
+    && apt-get install -y -f  curl sudo \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
-    && apt-get -qq -y remove curl \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y nodejs \
+    && apt-get -qq -y remove curl
 
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
     && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -y \
         oracle-java11-installer \
         oracle-java11-set-default \
         libjackson2-core-java \
         libjackson2-databind-java \
         libmysql-java \
-        maven \
-    && rm -rf /var/lib/apt/lists/*
+        maven
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
