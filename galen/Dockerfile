@@ -37,7 +37,6 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
 
-
 # Add the two scripts
 ADD xvfb_init /etc/init.d/xvfb
 ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
@@ -76,7 +75,6 @@ RUN apt-get update \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
     && rm firefox-46.0.1.tar.bz2 \
-    && apt-get remove -qq curl wget \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DISPLAY :99
