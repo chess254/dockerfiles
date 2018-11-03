@@ -6,6 +6,7 @@ RUN apt-get clean \
   && apt-get install -y \
       bc \
       locales \
+      python-software-properties \
       software-properties-common \
       build-essential \
  # && rm -rf /var/lib/apt/lists/* \
@@ -49,8 +50,7 @@ ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 RUN apt-get update \
    && apt-get -f install \
 # <Begin> Lets just install a bunch of things to try and get Galen to work
-   && apt-get install -y python-software-properties software-properties-common \
-   && npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug \
+   #&& npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug \
 # <End>
     && apt-get install -y xvfb \
 # Let added scripts be executable
