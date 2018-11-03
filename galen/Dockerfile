@@ -6,6 +6,7 @@ RUN apt-get clean \
   && apt-get install -y --no-install-recommends \
       bc \
       locales \
+      software-properties-common \
       build-essential \
  # && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
