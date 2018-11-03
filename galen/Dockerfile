@@ -2,14 +2,14 @@ FROM ubuntu:16.04
 
 # Set proper locale
 RUN apt-get clean \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
       bc \
       locales \
       software-properties-common \
       build-essential \
- # && rm -rf /var/lib/apt/lists/* \
-  && locale-gen en_US.UTF-8
+    && rm -rf /var/lib/apt/lists/* \
+    && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
