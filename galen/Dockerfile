@@ -13,14 +13,12 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 #Install Java, Node.js, and sudo
 RUN apt-get update \
+    && add-apt-repository -y ppa:linuxuprising/java \
+    && apt-get update \
     && apt-get install -y -f --no-install-recommends curl sudo \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
-    && apt-get -qq -y remove curl \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN add-apt-repository -y ppa:linuxuprising/java \
-    && apt-get update \
+# Install Java
     && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
     && apt-get install -y --no-install-recommends \
         oracle-java11-installer \
@@ -29,6 +27,7 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
         libjackson2-databind-java \
         libmysql-java \
         maven \
+    && apt-get -qq -y remove curl \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
