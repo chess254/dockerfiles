@@ -73,6 +73,7 @@ RUN apt-get update \
     && tar xvjf firefox-46.0.1.tar.bz2 \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
+    && rm /tmp/galen-ide.zip \
     && rm firefox-46.0.1.tar.bz2 \
     && rm -rf /var/lib/apt/lists/*
 
