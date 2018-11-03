@@ -14,19 +14,14 @@ RUN apt-get clean \
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-#Install Node.js
+#Install Node.js and sudo
 RUN apt-get update \
-    && apt-get install -y curl \
+    && apt-get install -f -y curl sudo \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install -y nodejs \
     && apt-get -qq -y remove curl \
     && apt-get -qq -y autoremove \
     && apt-get autoclean \
-    && rm -rf /var/lib/apt/lists/*
-
-
-RUN apt-get update \
-    && apt-get install -f -y sudo \
     && rm -rf /var/lib/apt/lists/*
 
 #grab oracle java (auto accept licence)
@@ -44,7 +39,6 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
-
 # Add the two scripts
 ADD xvfb_init /etc/init.d/xvfb
 ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
@@ -57,8 +51,8 @@ RUN apt-get update \
     && chmod a+x /etc/init.d/xvfb \
     && update-rc.d xvfb defaults \
     && chmod a+x /usr/bin/xvfb-daemon-run \
-# Xvfb stuff should be set up.
-#Installing Galen framework and related stuff
+# Done with Xvfb set up.
+#Installing Galen framework and related dependencies
     && apt-get update \
     && apt-get install -y \
     jq \
@@ -80,6 +74,7 @@ RUN apt-get update \
     && tar xvjf firefox-46.0.1.tar.bz2 \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
+    && apt-get remove -qq curl wget unzip \
     && rm firefox-46.0.1.tar.bz2 \
     && rm -rf /var/lib/apt/lists/*
 
