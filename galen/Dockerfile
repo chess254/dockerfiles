@@ -49,7 +49,7 @@ RUN apt-get update \
 # Xvfb stuff should be set up.
 #Installing Galen framework and related stuff
     && apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -y \
     jq \
     dbus-x11 \
     unzip \
@@ -72,7 +72,6 @@ RUN apt-get update \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
     && rm firefox-46.0.1.tar.bz2 \
-    && apt-get remove -qq curl wget \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DISPLAY :99
