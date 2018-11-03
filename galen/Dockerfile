@@ -6,9 +6,7 @@ RUN apt-get clean \
   && apt-get install -y --no-install-recommends \
       bc \
       locales \
-      software-properties-common \
-      build-essential \
-  && rm -rf /var/lib/apt/lists/* \
+ # && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
@@ -43,6 +41,7 @@ ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 # Install xvfb
 RUN apt-get update \
+    && apt-get -f install \
     && apt-get install -y xvfb \
 # Let added scripts be executable
     && chmod a+x /etc/init.d/xvfb \
@@ -74,7 +73,7 @@ RUN apt-get update \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
     && rm firefox-46.0.1.tar.bz2 \
-    && apt-get remove -qq curl wget \
+    && apt-get remove -qq curl wget unzip \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DISPLAY :99
