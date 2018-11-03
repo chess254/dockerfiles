@@ -9,7 +9,7 @@ RUN apt-get clean \
       python-software-properties \
       software-properties-common \
       build-essential \
- # && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
@@ -18,15 +18,18 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 RUN apt-get update \
     && apt-get install -y curl \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-    && apt-get install -y nodejs
-#    && apt-get -qq -y remove curl \
-#    && apt-get -qq -y autoremove \
-#    && apt-get autoclean \
-#    && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y nodejs \
+    && apt-get -qq -y remove curl \
+    && apt-get -qq -y autoremove \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/*
+
+
+RUN apt-get update \
+    && apt-get install -f -y sudo \
+    && rm -rf /var/lib/apt/lists/*
 
 #grab oracle java (auto accept licence)
-RUN apt-get update && apt-get install -f -y sudo
-
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
     && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
@@ -48,10 +51,7 @@ ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 # Install xvfb
 RUN apt-get update \
-   && apt-get -f install \
-# <Begin> Lets just install a bunch of things to try and get Galen to work
-   #&& npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug \
-# <End>
+    && apt-get -f install \
     && apt-get install -y xvfb \
 # Let added scripts be executable
     && chmod a+x /etc/init.d/xvfb \
