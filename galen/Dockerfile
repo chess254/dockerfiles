@@ -74,7 +74,6 @@ RUN apt-get update \
     && tar xvjf firefox-46.0.1.tar.bz2 \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
-    && apt-get remove -qq curl wget unzip \
     && rm firefox-46.0.1.tar.bz2 \
     && rm -rf /var/lib/apt/lists/*
 
