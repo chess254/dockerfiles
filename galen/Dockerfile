@@ -41,7 +41,6 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
 
-
 # Add the two scripts
 ADD xvfb_init /etc/init.d/xvfb
 ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
@@ -74,7 +73,6 @@ RUN apt-get update \
     && unzip /tmp/galen-ide.zip -d /tmp \
     && cd /tmp/galen-ide \
 # The setup script uses sudo, let's remove it.
-    && cat /tmp/galen-ide/assembleAndInstall.sh | sed -e 's/sudo //g' > /tmp/galen-ide/assembleAndInstall.sh \
     && . /tmp/galen-ide/assembleAndInstall.sh \
 #Install Firefox 46 version. This exact version is needed for galen-ide
     && cd /usr/local \
