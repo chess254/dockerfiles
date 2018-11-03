@@ -8,11 +8,12 @@ RUN apt-get clean \
       locales \
       software-properties-common \
       build-essential \
+  && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-#Install Node.js, and sudo
+#Install Java, Node.js, and sudo
 RUN apt-get update \
     && apt-get install -y -f --no-install-recommends curl sudo \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
@@ -20,7 +21,6 @@ RUN apt-get update \
     && apt-get -qq -y remove curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install java
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
     && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
@@ -35,15 +35,13 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
-
 # Add the two scripts
 ADD xvfb_init /etc/init.d/xvfb
 ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 # Install xvfb
 RUN apt-get update \
-    && apt-get -f install \
-    && apt-get install -y --no-install-recommends xvfb \
+    && apt-get install -y xvfb \
 # Let added scripts be executable
     && chmod a+x /etc/init.d/xvfb \
     && update-rc.d xvfb defaults \
@@ -51,7 +49,7 @@ RUN apt-get update \
 # Xvfb stuff should be set up.
 #Installing Galen framework and related stuff
     && apt-get update \
-    && apt-get install -y --no-install-recomends \
+    && apt-get install -y --no-install-recommends \
     jq \
     dbus-x11 \
     unzip \
@@ -74,6 +72,7 @@ RUN apt-get update \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
     && rm firefox-46.0.1.tar.bz2 \
+    && apt-get remove -qq curl wget \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DISPLAY :99
