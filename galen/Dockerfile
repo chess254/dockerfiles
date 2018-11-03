@@ -8,7 +8,6 @@ RUN apt-get clean \
       locales \
       software-properties-common \
       build-essential \
-  && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
@@ -44,7 +43,7 @@ ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 # Install xvfb
 RUN apt-get update \
     && apt-get -f install \
-    && apt-get install -y xvfb \
+    && apt-get install -y --no-install-recommends xvfb \
 # Let added scripts be executable
     && chmod a+x /etc/init.d/xvfb \
     && update-rc.d xvfb defaults \
@@ -52,7 +51,7 @@ RUN apt-get update \
 # Xvfb stuff should be set up.
 #Installing Galen framework and related stuff
     && apt-get update \
-    && apt-get install -y \
+    && apt-get install -y --no-install-recomends \
     jq \
     dbus-x11 \
     unzip \
