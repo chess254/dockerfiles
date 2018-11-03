@@ -8,23 +8,18 @@ RUN apt-get clean \
       locales \
       software-properties-common \
       build-essential \
- # && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-#Install Node.js
+#Install Java, Node.js, and sudo
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl \
+    && apt-get install -y -f --no-install-recommends curl sudo \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs
-#    && apt-get -qq -y remove curl \
-#    && apt-get -qq -y autoremove \
-#    && apt-get autoclean \
-#    && rm -rf /var/lib/apt/lists/*
-
-#grab oracle java (auto accept licence)
-RUN apt-get update && apt-get install -f -y sudo
+    && apt-get install -y --no-install-recommends nodejs \
+    && apt-get -qq -y remove curl \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
@@ -48,11 +43,6 @@ ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 
 # Install xvfb
 RUN apt-get update \
-    && apt-get -f install \
-# <Begin> Lets just install a bunch of things to try and get Galen to work
-   && apt-get install -y python-software-properties software-properties-common \
-   && npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug \
-# <End>
     && apt-get install -y xvfb \
 # Let added scripts be executable
     && chmod a+x /etc/init.d/xvfb \
@@ -72,6 +62,7 @@ RUN apt-get update \
     libasound2-dev \
     && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
     && unzip /tmp/galen-ide.zip -d /tmp \
+    && rm /tmp/galen-ide.zip \
     && cd /tmp/galen-ide \
 # The setup script uses sudo, let's remove it.
     && cat /tmp/galen-ide/assembleAndInstall.sh | sed -e 's/sudo //g' > /tmp/galen-ide/assembleAndInstall.sh \
@@ -83,6 +74,7 @@ RUN apt-get update \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
     && rm firefox-46.0.1.tar.bz2 \
+    && apt-get remove -qq curl wget \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DISPLAY :99
