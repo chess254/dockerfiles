@@ -2,25 +2,28 @@ FROM ubuntu:16.04
 
 # Set proper locale
 RUN apt-get clean \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
       bc \
       locales \
       software-properties-common \
       build-essential \
-    && rm -rf /var/lib/apt/lists/* \
-    && locale-gen en_US.UTF-8
+  && rm -rf /var/lib/apt/lists/* \
+  && locale-gen en_US.UTF-8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-#Install Java, Node.js, and sudo
+#Install Node.js, and sudo
 RUN apt-get update \
-    && add-apt-repository -y ppa:linuxuprising/java \
-    && apt-get update \
     && apt-get install -y -f --no-install-recommends curl sudo \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
-# Install Java
+    && apt-get -qq -y remove curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install java
+RUN add-apt-repository -y ppa:linuxuprising/java \
+    && apt-get update \
     && echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
     && apt-get install -y --no-install-recommends \
         oracle-java11-installer \
@@ -29,7 +32,6 @@ RUN apt-get update \
         libjackson2-databind-java \
         libmysql-java \
         maven \
-    && apt-get -qq -y remove curl \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
@@ -74,7 +76,7 @@ RUN apt-get update \
     && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
 # Cleanup
     && rm firefox-46.0.1.tar.bz2 \
-    && apt-get remove -qq curl wget unzip \
+    && apt-get remove -qq curl wget \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DISPLAY :99
