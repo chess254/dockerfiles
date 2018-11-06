@@ -8,7 +8,6 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-
 #Installing Galen framework and related stuff
 RUN apt-get update \
     && apt-get install -y unzip wget bzip2 \
@@ -38,13 +37,11 @@ RUN apt-get update \
 
 RUN apt-get update \
     && apt-get install -y \
-    bc \
+#  bc \
     sudo \
- #   python-software-properties \
-    software-properties-common \
+ #   software-properties-common \
     curl \
-    libcurl4-openssl-dev \
-#    apt-transport-https \
+ #   libcurl4-openssl-dev \
     clang \
     libsigsegv2 \
     libffcall1 \
@@ -54,16 +51,13 @@ RUN apt-get update \
     libgtk-3-dev \
     libasound2 \
     libasound2-dev \
-    jq \
+ #   jq \
     dbus-x11 \
 #Install Node.js
     && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
-   # && apt-get update \
     && apt-get install -y nodejs maven \
+    && apt-get remove -qq -y curl \
     && rm -rf /var/lib/apt/lists/*
-
-ENV NODE_PATH=/usr/lib/node_modules/
-#RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug
 
 #grab oracle java (auto accept licence)
 RUN add-apt-repository -y ppa:linuxuprising/java \
@@ -78,12 +72,10 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
         maven \
     && rm -rf /var/lib/apt/lists/*
 
-ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
+ENV NODE_PATH=/usr/lib/node_modules/ \
+    CLASSPATH=/usr/share/java/*:$CLASSPATH \
+    DISPLAY=:99
 
 #Installing Galen framework and related stuff
 RUN cd /tmp/galen-ide \
     && . /tmp/galen-ide/assembleAndInstall.sh
-
-
-ENV DISPLAY :99
-    
