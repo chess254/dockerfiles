@@ -37,11 +37,9 @@ RUN apt-get update \
 
 RUN apt-get update \
     && apt-get install -y \
-#  bc \
     sudo \
- #   software-properties-common \
+    software-properties-common \
     curl \
- #   libcurl4-openssl-dev \
     clang \
     libsigsegv2 \
     libffcall1 \
@@ -51,7 +49,6 @@ RUN apt-get update \
     libgtk-3-dev \
     libasound2 \
     libasound2-dev \
- #   jq \
     dbus-x11 \
 #Install Node.js
     && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
