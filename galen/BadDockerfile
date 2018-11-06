@@ -1,36 +1,39 @@
 FROM ubuntu:16.04
 
 # Set proper locale
-RUN apt-get clean && apt-get update
-RUN apt-get install -y locales
-RUN locale-gen en_US.UTF-8
+RUN apt-get clean \
+    && apt-get update \
+    && apt-get install -y locales \
+    && locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # Installing xvfb and related stuff
-# RUN apt-get install -y libxtst6
-# RUN apt-get install -y libxext6
-RUN apt-get update
-RUN apt-get -f install
-RUN apt-get install -fy xvfb
+
+RUN apt-get update \
+    && apt-get -f install \
+    && apt-get install -fy xvfb
 
 # Install Xvfb init script
 ADD xvfb_init /etc/init.d/xvfb
-RUN chmod a+x /etc/init.d/xvfb
-RUN update-rc.d xvfb defaults
 ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
-RUN chmod a+x /usr/bin/xvfb-daemon-run
 
-#Install all the languages/compilers we are supporting.
-RUN apt-get install -y gcc python
+RUN chmod a+x /etc/init.d/xvfb \
+    && update-rc.d xvfb defaults \
+    && chmod a+x /usr/bin/xvfb-daemon-run
 
-RUN apt-get install -y sudo
-RUN apt-get install -y python-software-properties software-properties-common
-RUN apt-get install -y curl libcurl4-openssl-dev wget bzip2
+RUN apt-get install -y \
+    sudo \
+    python-software-properties \
+    software-properties-common
+RUN apt-get install -y \
+    curl \
+    libcurl4-openssl-dev \
+    wget \
+    bzip2
+
 #Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-RUN apt-get install -y nodejs
-
-RUN apt-get install -y maven
+RUN apt-get update && apt-get install -y nodejs maven
 
 RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug && export NODE_PATH=/usr/lib/node_modules/
 
@@ -49,16 +52,14 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
-RUN apt-get update
-RUN apt-get install -y bc
+RUN apt-get update \
+    && apt-get install -y bc
+
 
 #Installing Galen framework and related stuff
-# RUN npm install -g galenframework-cli
-
-#Installing Galen framework and related stuff
-RUN apt-get install -y jq dbus-x11 unzip
-RUN wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/
-RUN unzip /tmp/galen-ide.zip -d /tmp \
+RUN apt-get install -y jq dbus-x11 unzip \
+    && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
+    && unzip /tmp/galen-ide.zip -d /tmp \
     && cd /tmp/galen-ide \
     && . /tmp/galen-ide/assembleAndInstall.sh
 
@@ -71,9 +72,9 @@ ENV DISPLAY :99
 
 
 # Enable HTTPS for apt.
-RUN apt-get install -y apt-transport-https clang libsigsegv2 libffcall1 libreadline5 make libreadline-dev
+RUN apt-get update \
+    && apt-get install -y apt-transport-https clang libsigsegv2 libffcall1 libreadline5 make libreadline-dev
 
-RUN apt-get update
 RUN apt-get update \
     && apt-get install -y \
     libgtk-3-dev \
