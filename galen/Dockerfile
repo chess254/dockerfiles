@@ -58,7 +58,7 @@ RUN apt-get update \
     && apt-get install -y nodejs maven \
     && apt-get remove -qq -y curl \
     && rm -rf /var/lib/apt/lists/*
-
+ENV NODE_PATH=/usr/lib/node_modules/ 
 #grab oracle java (auto accept licence)
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
@@ -72,10 +72,10 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
         maven \
     && rm -rf /var/lib/apt/lists/*
 
-ENV NODE_PATH=/usr/lib/node_modules/ \
-    CLASSPATH=/usr/share/java/*:$CLASSPATH \
-    DISPLAY=:99
+ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
 #Installing Galen framework and related stuff
 RUN cd /tmp/galen-ide \
     && . /tmp/galen-ide/assembleAndInstall.sh
+
+ENV DISPLAY=:99
