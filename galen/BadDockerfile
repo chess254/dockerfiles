@@ -49,6 +49,8 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
+RUN apt-get update
+RUN apt-get install -y bc
 RUN echo "mysql ALL = NOPASSWD: /usr/sbin/service mysql start" | cat >> /etc/sudoers
 
 #Installing Galen framework and related stuff
