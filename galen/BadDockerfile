@@ -22,7 +22,7 @@ RUN chmod a+x /usr/bin/xvfb-daemon-run
 
 RUN apt-get install -y sudo
 RUN apt-get install -y python-software-properties
-RUN apt-get install -y curl libcurl4-openssl-dev wget bzip2 bzip2-libs
+RUN apt-get install -y curl libcurl4-openssl-dev wget bzip2
 #Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN apt-get install -y nodejs
