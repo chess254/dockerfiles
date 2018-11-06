@@ -20,6 +20,10 @@ RUN update-rc.d xvfb defaults
 ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
 RUN chmod a+x /usr/bin/xvfb-daemon-run
 
+#Install all the languages/compilers we are supporting.
+RUN apt-get install -y gcc g++ libjson-perl perl python
+
+
 RUN apt-get install -y sudo
 RUN apt-get install -y python-software-properties
 RUN apt-get install -y curl libcurl4-openssl-dev wget bzip2
@@ -28,6 +32,9 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN apt-get install -y nodejs
 
 RUN apt-get install -y maven
+
+RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug && export NODE_PATH=/usr/lib/node_modules/
+
 
 #prepare for Java download
 RUN apt-get install -y python-software-properties
@@ -48,6 +55,25 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
+
+#Installing mysql server
+RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
+RUN echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+RUN apt-get update && \
+  apt-get -y install mysql-server-5.7 && \
+  mkdir -p /var/lib/mysql && \
+  mkdir -p /var/run/mysqld && \
+  mkdir -p /var/log/mysql && \
+  chown -R mysql:mysql /var/lib/mysql && \
+  chown -R mysql:mysql /var/run/mysqld && \
+  chown -R mysql:mysql /var/log/mysql
+# UTF-8 and bind-address
+RUN sed -i -e "$ a [client]\n\n[mysql]\n\n[mysqld]"  /etc/mysql/my.cnf && \
+  sed -i -e "s/\(\[client\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf && \
+  sed -i -e "s/\(\[mysql\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf && \
+  sed -i -e "s/\(\[mysqld\]\)/\1\ninit_connect='SET NAMES utf8'\ncharacter-set-server = utf8\ncollation-server=utf8_unicode_ci\nbind-address = 0.0.0.0/g" /etc/mysql/my.cnf
+
 
 RUN apt-get update
 RUN apt-get install -y bc
@@ -72,6 +98,13 @@ ENV DISPLAY :99
 
 RUN apt-get install -y clang
 
+#Install Common Lisp
+RUN apt-get install -y libsigsegv2 libffcall1 libreadline5 make libreadline-dev
+
+# Enable HTTPS for apt.
+RUN apt-get install -y apt-transport-https
+
 #MySQL and PostgreSQL libs for Java, C++ and Perl
 RUN apt-get update
+RUN apt-get install -y libmysqlclient-dev
 RUN apt-get install -y libmysql-java postgresql postgresql-contrib postgresql-client libpq5 libpq-dev
