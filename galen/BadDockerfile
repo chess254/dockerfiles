@@ -108,3 +108,7 @@ RUN apt-get install -y apt-transport-https
 RUN apt-get update
 RUN apt-get install -y libmysqlclient-dev
 RUN apt-get install -y libmysql-java postgresql postgresql-contrib postgresql-client libpq5 libpq-dev
+RUN apt-get install -y \
+    libgtk-3-dev \
+    libasound2 \
+    libasound2-dev
