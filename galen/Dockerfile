@@ -8,6 +8,21 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
+
+#Installing Galen framework and related stuff
+RUN apt-get update \
+    && apt-get install -y unzip wget bzip2 \
+    && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
+    && unzip /tmp/galen-ide.zip -d /tmp \
+#Install Firefox 46 version. This exact version is needed for galen-ide
+    && cd /usr/local \
+    && wget http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/46.0.1/linux-x86_64/en-US/firefox-46.0.1.tar.bz2 \
+    && tar -xvjf firefox-46.0.1.tar.bz2 \
+    && ln -s /usr/local/firefox/firefox /usr/bin/firefox \
+# Cleanup
+    && rm /tmp/galen-ide.zip /usr/local/firefox-46.0.1.tar.bz2 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Installing xvfb and related stuff
 # Install Xvfb init script
 ADD xvfb_init /etc/init.d/xvfb
@@ -29,8 +44,6 @@ RUN apt-get update \
     software-properties-common \
     curl \
     libcurl4-openssl-dev \
-    wget \
-    bzip2 \
     apt-transport-https \
     clang \
     libsigsegv2 \
@@ -49,8 +62,8 @@ RUN apt-get update \
     && apt-get install -y nodejs maven \
     && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug && export NODE_PATH=/usr/lib/node_modules/
-
+ENV NODE_PATH=/usr/lib/node_modules/
+RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug
 #grab oracle java (auto accept licence)
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
@@ -67,20 +80,9 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH
 
 #Installing Galen framework and related stuff
-RUN apt-get update \
-    && apt-get install -y unzip \
-    && wget https://codefightsuserpics.s3.amazonaws.com/galen-ide.zip -P /tmp/ \
-    && unzip /tmp/galen-ide.zip -d /tmp \
-    && cd /tmp/galen-ide \
-    && . /tmp/galen-ide/assembleAndInstall.sh \
-    && rm /tmp/galen-ide.zip \
-    && rm -rf /var/lib/apt/lists/*
+RUN cd /tmp/galen-ide \
+    && . /tmp/galen-ide/assembleAndInstall.sh
 
-#Install Firefox 46 version. This exact version is needed for galen-ide
-RUN cd /usr/local \
-    && wget http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/46.0.1/linux-x86_64/en-US/firefox-46.0.1.tar.bz2 \
-    && tar -xvjf firefox-46.0.1.tar.bz2 \
-    && rm firefox-46.0.1.tar.bz2 \
-    && ln -s /usr/local/firefox/firefox /usr/bin/firefox
+
 ENV DISPLAY :99
     
