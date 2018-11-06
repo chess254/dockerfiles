@@ -40,11 +40,9 @@ RUN apt-get update \
     && apt-get install -y \
     bc \
     sudo \
- #   python-software-properties \
     software-properties-common \
     curl \
     libcurl4-openssl-dev \
-#    apt-transport-https \
     clang \
     libsigsegv2 \
     libffcall1 \
@@ -58,12 +56,10 @@ RUN apt-get update \
     dbus-x11 \
 #Install Node.js
     && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
-   # && apt-get update \
     && apt-get install -y nodejs maven \
     && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_PATH=/usr/lib/node_modules/
-#RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug
 
 #grab oracle java (auto accept licence)
 RUN add-apt-repository -y ppa:linuxuprising/java \
