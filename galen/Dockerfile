@@ -19,9 +19,8 @@ RUN apt-get update \
     && chmod a+x /etc/init.d/xvfb \
     && update-rc.d xvfb defaults \
     && chmod a+x /usr/bin/xvfb-daemon-run \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update \
+# Add verious dependencies that will be needed
+    && apt-get update \
     && apt-get install -y \
     bc \
     sudo \
@@ -32,11 +31,9 @@ RUN apt-get update \
     wget \
     bzip2 \
     apt-transport-https \
-    clang \
     libsigsegv2 \
     libffcall1 \
     libreadline5 \
-    make \
     libreadline-dev \
     libgtk-3-dev \
     libasound2 \
@@ -47,9 +44,10 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
     && apt-get update \
     && apt-get install -y nodejs maven \
+    && apt-get remove -qq -y curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g sequelize underscore crypto-js lodash request shelljs http sys jquery async connect mysql mysql2 validator  ws co when forever  debug && export NODE_PATH=/usr/lib/node_modules/
+ENV NODE_PATH=/usr/lib/node_modules/
 
 #grab oracle java (auto accept licence)
 RUN add-apt-repository -y ppa:linuxuprising/java \
