@@ -5,4 +5,4 @@ WORKDIR /usr/src/app
 ADD pom.xml /usr/src/app
 
 # Hopefully get downloads out of the way
-RUN mvn verify clean --fail-never
+RUN mvn verify clean
