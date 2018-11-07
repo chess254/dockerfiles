@@ -17,8 +17,26 @@
 
     <dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.1.0.RELEASE</version>
+		</dependency>
+
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-parent</artifactId>
+      <version>1.5.15.RELEASE</version>
+		</dependency>
+
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
       <version>2.1.0.RELEASE</version>
+		</dependency>
+
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+      <version>1.5.15.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -27,10 +45,22 @@
       <version>2.1.0.RELEASE</version>
 		</dependency>
 
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>1.5.15.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
       <version>2.1.0.RELEASE</version>
+		</dependency>
+
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+      <version>1.5.15.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -44,6 +74,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
       <version>2.1.0.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+      <version>1.5.15.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -91,6 +128,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
         <version>2.1.0.RELEASE</version>
+			</plugin>
+      <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+        <version>1.5.15.RELEASE</version>
 			</plugin>
     </plugins>
   </build>
