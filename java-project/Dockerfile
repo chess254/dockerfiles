@@ -8,6 +8,7 @@ FROM codesignal/java:v1.1
 RUN mvn dependency:get -Dartifact=junit:junit:4.12 \
     && mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-dependency-plugin:3.1.0 \
     && mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-compiler-plugin:3.1:pom \
+    && mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-compiler-plugin:3.2:pom \
     && mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-resources-plugin:3.1.0 \
     && mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-resources-plugin:2.6 \
     && mvn dependency:get -Dartifact=junit:junit:3.8.2 \
