@@ -6,6 +6,8 @@ FROM codesignal/java:v1.1
 # -Dartifact=groupId:artifactId:version[:packaging][:classifier]
 #   specifies the target artifact. Packaging is default `jar` but might be `pom`
 RUN mvn dependency:get -Dartifact=junit:junit:4.12 \
+    && mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-resources-plugin:3.1.0 \
+    && mvn dependency:get -Dartifact=org.apache.maven.plugins:maven-resources-plugin:2.6 \
     && mvn dependency:get -Dartifact=junit:junit:3.8.2 \
     && mvn dependency:get -Dartifact=org.junit.jupiter:junit-jupiter-engine:5.1.0 \
     && mvn dependency:get -Dartifact=org.hibernate:hibernate-agroal:5.3.7.Final:pom \
