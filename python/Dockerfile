@@ -19,7 +19,7 @@ RUN conda create -n py2 -y python=2 \
        pandas \
        atlas \
        scikit-learn \
-       tensorflow \
+       tensorflow=1.11.0 \
        keras \
        nltk \
        requests \
@@ -34,7 +34,7 @@ RUN conda create -n py2 -y python=2 \
        pandas \
        atlas \
        scikit-learn \
-       tensorflow \
+       tensorflow=1.11.0 \
        keras \
        nltk \
        requests \
