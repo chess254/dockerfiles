@@ -27,6 +27,7 @@ RUN conda create -n py2 -y python=2 \
        mysql-connector-python \
        MySql-Python \
        SQLAlchemy \
+       toolz \
     && conda create -n py3 -y python=3 \
        numpy \
        scipy \
@@ -39,8 +40,8 @@ RUN conda create -n py2 -y python=2 \
        requests \
        mysql-connector-python \
        PyMySQL \
-       SQLAlchemy
-
+       SQLAlchemy \
+       toolz
 RUN ["/bin/bash", "-c", "source activate py3 && python -m nltk.downloader popular \
       && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log \
       && conda clean --all --yes"]
