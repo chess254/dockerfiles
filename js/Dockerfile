@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v1.1
+FROM codesignal/ubuntu-base:v2.0
 
 # Node and npm inherited from ubuntu-base.
 RUN npm install -g \
@@ -20,6 +20,6 @@ RUN npm install -g \
     underscore \
     validator  \
     when \
-    ws 
+    ws
 
 ENV NODE_PATH=/usr/lib/node_modules/

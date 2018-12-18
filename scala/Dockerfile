@@ -1,4 +1,4 @@
-FROM codesignal/java:v1.1
+FROM codesignal/java:v2.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends wget \

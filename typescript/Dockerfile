@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v1.1
+FROM codesignal/ubuntu-base:v2.0
 
 #Install TypeScript
 # For @types/node@9.6.7 see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/25342

@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v1.1
+FROM codesignal/ubuntu-base:v2.0
 
 #Install Lua
 RUN apt-get update \

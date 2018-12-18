@@ -55,3 +55,7 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
 # Clean up
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
+
+# Hack required for mysql to work with the "overlay2" filesystem, see link for more details:
+#   https://serverfault.com/questions/870568/fatal-error-cant-open-and-lock-privilege-tables-table-storage-engine-for-use/872576#872576
+RUN echo "chown -R mysql:mysql /var/lib/mysql /var/run/mysqld" >> ~/.bashrc
