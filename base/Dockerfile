@@ -68,8 +68,6 @@ RUN apt-get update \
 # Setup mongodb server
 RUN mkdir -p /data/mongodb /data/configdb \
     && chown -R mongodb:mongodb /data/mongodb /data/configdb
-# Declares these here, prevents extensions from adding files
-VOLUME /data/mongodb /data/configdb
+
 ADD mongod.conf /etc/mongod.conf
 ADD mongodb.conf /etc/mongodb.conf
-ADD ./mongod_runner.sh /usr/src/mongod_runner.sh
