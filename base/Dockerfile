@@ -56,6 +56,18 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-# Hack required for mysql to work with the "overlay2" filesystem, see link for more details:
-#   https://serverfault.com/questions/870568/fatal-error-cant-open-and-lock-privilege-tables-table-storage-engine-for-use/872576#872576
-RUN echo "chown -R mysql:mysql /var/lib/mysql /var/run/mysqld" >> ~/.bashrc
+#Install mongodb server
+RUN apt-get update \
+    && apt-get install -y mongodb-server \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 \
+    && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
+    && apt-get update \
+    && apt-get install -y mongodb-org=4.0.5 mongodb-org-server=4.0.5 mongodb-org-shell=4.0.5 mongodb-org-mongos=4.0.5 mongodb-org-tools=4.0.5 \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/mongodb
+# Setup mongodb server
+RUN mkdir -p /data/mongodb /data/configdb \
+    && chown -R mongodb:mongodb /data/mongodb /data/configdb
+
+ADD mongod.conf /etc/mongod.conf
+ADD mongodb.conf /etc/mongodb.conf
