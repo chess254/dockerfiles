@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v3.0
+FROM codesignal/ubuntu-base:v4.0
 
 RUN apt-add-repository ppa:brightbox/ruby-ng \
     && apt-get -qq update \

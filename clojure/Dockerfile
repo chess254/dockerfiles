@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v3.0
+FROM codesignal/ubuntu-base:v4.0
 
 RUN apt-get update \
   && add-apt-repository -y ppa:jonathonf/lisp \

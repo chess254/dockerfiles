@@ -1,7 +1,6 @@
-FROM codesignal/java:v3.0
+FROM codesignal/java:v4.0
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget \
     && wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb \
     && dpkg -i scala-2.12.5.deb \
     && apt-get update \

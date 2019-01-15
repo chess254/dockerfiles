@@ -1,9 +1,8 @@
-FROM codesignal/ubuntu-base:v3.0
+FROM codesignal/ubuntu-base:v4.0
 
 RUN JULIA_PATH=/usr/local/julia \
     JULIA_VERSION=1.0.1 ;\
   apt-get update \
-  && apt-get install -y --no-install-recommends curl \
   && mkdir $JULIA_PATH \
   && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" -o julia.tar.gz \
   && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz.asc" -o julia.tar.gz.asc \
@@ -13,7 +12,6 @@ RUN JULIA_PATH=/usr/local/julia \
   && rm -r "$GNUPGHOME" julia.tar.gz.asc \
   && tar -xzf julia.tar.gz -C $JULIA_PATH --strip-components 1 \
 # Cleanup
-  && apt-get remove -qq -y curl \
   && rm -rf /var/lib/apt/lists/* julia.tar.gz*
 
 ENV JULIA_PATH=/usr/local/julia

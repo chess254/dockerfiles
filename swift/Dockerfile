@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v3.0
+FROM codesignal/ubuntu-base:v4.0
 
 ENV SWIFT_BRANCH=swift-3.1.1-release \
     SWIFT_VERSION=swift-3.1.1-RELEASE \
@@ -19,7 +19,6 @@ RUN apt-get update \
         libedit2 \
         libxml2 \
         ca-certificates \
-        curl \
         git \
         gnupg \
         cmake \
@@ -38,7 +37,7 @@ RUN apt-get update \
     && /bin/bash -c "/root/InstallObjectiveC.sh" \
 # Cleanup
     && rm -r "${GNUPGHOME}" "${SWIFT_ARCHIVE}" "${SWIFT_ARCHIVE_SIGNATURE}" \
-    && apt-get -qq -y remove curl cmake git \
+    && apt-get -qq -y remove cmake git \
     && apt-get -qq -y autoremove \
     && rm "/root/InstallObjectiveC.sh" \
     && rm -rf /var/lib/apt/lists/*

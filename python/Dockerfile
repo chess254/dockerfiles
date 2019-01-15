@@ -1,13 +1,13 @@
-FROM codesignal/ubuntu-base:v3.0
+FROM codesignal/ubuntu-base:v4.0
 
 RUN apt-get -qq update \
-    && apt-get -qq -y install curl bzip2 --no-install-recommends \
+    && apt-get -qq -y install bzip2 --no-install-recommends \
     && curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh \
     && bash /tmp/miniconda.sh -bfp /usr/local \
     && rm -rf /tmp/miniconda.sh \
     && conda install -y python=3 \
     && conda update conda \
-    && apt-get -qq -y remove curl bzip2 \
+    && apt-get -qq -y remove bzip2 \
     && apt-get -qq -y autoremove \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/*

@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v3.0
+FROM codesignal/ubuntu-base:v4.0
 
 RUN add-apt-repository ppa:ondrej/php \
   && apt-get -qq -y update \

@@ -1,12 +1,10 @@
-FROM codesignal/ubuntu-base:v3.0
+FROM codesignal/ubuntu-base:v4.0
 
 #Install Lua
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     make \
     libreadline-dev \
-    curl \
-    wget \
     && curl -R -O http://www.lua.org/ftp/lua-5.3.4.tar.gz \
     && tar zxf lua-5.3.4.tar.gz \
     && rm lua-5.3.4.tar.gz \
@@ -18,5 +16,4 @@ RUN apt-get update \
     && cd LuaJIT-2.0.5 \
     && make \
     && make install \
-    && apt-get -qq -y remove curl wget \
     && rm -rf /var/lib/apt/lists/*
