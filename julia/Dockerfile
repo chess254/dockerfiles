@@ -14,7 +14,6 @@ RUN JULIA_PATH=/usr/local/julia \
   && rm -r "$GNUPGHOME" julia.tar.gz.asc \
   && tar -xzf julia.tar.gz -C $JULIA_PATH --strip-components 1 \
 # Cleanup
-  && apt-get remove -qq -y curl \
   && rm -rf /var/lib/apt/lists/* julia.tar.gz*
 
 ENV JULIA_PATH=/usr/local/julia

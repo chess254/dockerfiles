@@ -31,6 +31,6 @@ RUN apt-get update \
     && gpg --verify "${SWIFT_ARCHIVE_SIGNATURE}" \
     && tar -zxvf "${SWIFT_ARCHIVE}" --directory / --strip-components=1 \
     && rm -r "${GNUPGHOME}" "${SWIFT_ARCHIVE}" "${SWIFT_ARCHIVE_SIGNATURE}" \
-    && apt-get -qq -y remove curl cmake git \
+    && apt-get -qq -y remove cmake git \
     && apt-get -qq -y autoremove \
     && rm -rf /var/lib/apt/lists/*

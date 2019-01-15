@@ -13,7 +13,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y --no-install-recommends dart=1.24.2-1 \
 # Cleanup
-    && apt-get remove -qq -y curl apt-transport-https \
+    && apt-get remove -qq -y apt-transport-https \
     && rm -rf /var/lib/apt/lists/*
 
 

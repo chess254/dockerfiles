@@ -18,5 +18,4 @@ RUN apt-get update \
     && cd LuaJIT-2.0.5 \
     && make \
     && make install \
-    && apt-get -qq -y remove curl wget \
     && rm -rf /var/lib/apt/lists/*

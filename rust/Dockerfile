@@ -6,7 +6,6 @@ RUN apt-get update \
     && curl https://sh.rustup.rs -sSf | HOME=/opt/rust sh -s -- --no-modify-path -y \
     && chmod -R 777 /opt/rust \
 # Cleanup
-    && apt-get remove -qq -y curl \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH=/opt/rust/.cargo/bin:$PATH
