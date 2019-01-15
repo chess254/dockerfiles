@@ -4,7 +4,6 @@ FROM codesignal/ubuntu-base:v4.0
 RUN JULIA_PATH=/usr/local/julia \
     JULIA_VERSION=0.6.2 ;\
   apt-get update \
-  && apt-get install -y --no-install-recommends curl \
   && mkdir $JULIA_PATH \
   && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" -o julia.tar.gz \
   && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz.asc" -o julia.tar.gz.asc \

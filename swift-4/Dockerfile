@@ -16,7 +16,6 @@ RUN apt-get update \
         libedit2 \
         libxml2 \
         ca-certificates \
-        curl \
         git \
         gnupg \
         cmake \

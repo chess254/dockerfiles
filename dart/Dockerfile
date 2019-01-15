@@ -5,7 +5,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
 # Enable HTTPS for apt.
     apt-transport-https \
-    curl \
 # Get the Google Linux package signing key.
     && curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
 # Set up the location of the stable repository.

@@ -5,8 +5,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     make \
     libreadline-dev \
-    curl \
-    wget \
     && curl -R -O http://www.lua.org/ftp/lua-5.3.4.tar.gz \
     && tar zxf lua-5.3.4.tar.gz \
     && rm lua-5.3.4.tar.gz \
