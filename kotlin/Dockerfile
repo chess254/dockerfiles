@@ -1,4 +1,4 @@
-FROM codesignal/java:v3.0
+FROM codesignal/java:v4.0
 
 RUN KOTLIN_VERSION=1.2.40 \
     KOTLIN_COMPILER_URL=https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip ; \
@@ -7,8 +7,6 @@ RUN KOTLIN_VERSION=1.2.40 \
   && wget $KOTLIN_COMPILER_URL -O /tmp/a.zip \
   && unzip /tmp/a.zip -d /opt  \
   && rm /tmp/a.zip \
-# Having an issue with apt, skipping cleanup
-  # && apt-get remove -qq -y unzip wget zip \
   && rm -rf /var/lib/apt/lists/*
 
 ENV PATH $PATH:/opt/kotlinc/bin
