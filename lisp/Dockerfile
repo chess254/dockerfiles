@@ -5,7 +5,6 @@ RUN apt-get update \
   libsigsegv2 \
   libffcall1 \
   libreadline5 \
-  wget \
   && wget http://ftp.debian.org/debian/pool/main///c/clisp/clisp_2.49-8.1_amd64.deb \
   && dpkg -i clisp_2.49-8.1_amd64.deb \
   && wget https://beta.quicklisp.org/quicklisp.lisp -P /tmp \

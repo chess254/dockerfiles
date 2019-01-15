@@ -1,7 +1,6 @@
 FROM codesignal/ubuntu-base:v4.0
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget \
     && wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
     && dpkg -i erlang-solutions_1.0_all.deb \
     && apt-get update \

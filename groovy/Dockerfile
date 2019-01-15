@@ -3,7 +3,7 @@ FROM codesignal/java:v4.0
 ENV GROOVY_VERSION 2.4.15
 
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends wget unzip \
+  && apt-get install -y --no-install-recommends unzip \
   && cd /tmp \
   && wget http://dl.bintray.com/groovy/maven/apache-groovy-binary-${GROOVY_VERSION}.zip \
   && unzip apache-groovy-binary-${GROOVY_VERSION}.zip \

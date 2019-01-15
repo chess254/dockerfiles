@@ -16,7 +16,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 #Additional libs for CS
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget unzip \
+    && apt-get install -y --no-install-recommends unzip \
     && wget https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-8.0.11-noinstall.zip -P /tmp/ \
     && unzip /tmp/mysql-connector-net-8.0.11-noinstall.zip -d /tmp && cd /tmp/v4.5.2 && cp MySql.Data.dll /usr/lib/mono/ && cd /usr/lib/mono/ && gacutil -i MySql.Data.dll -package MySql.Data \
     && wget https://github.com/JamesNK/Newtonsoft.Json/releases/download/11.0.2/Json110r2.zip -P /tmp/ \
