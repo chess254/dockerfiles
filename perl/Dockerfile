@@ -6,4 +6,5 @@ RUN apt-get update \
     libjson-perl \
     libdbi-perl \
     libdbd-mysql-perl \
+    libwww-perl \
     && rm -rf /var/lib/apt/lists/*
