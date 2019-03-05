@@ -11,6 +11,7 @@ RUN npm install -g \
     http \
     jquery \
     lodash \
+    mocha \
     mongodb \
     mysql \
     mysql2 \
