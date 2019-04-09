@@ -9,4 +9,6 @@ RUN add-apt-repository -y ppa:marutter/rrutter \
     r-cran-jsonlite \
     r-cran-httr \
     r-cran-dplyr \
+    r-cran-magrittr \
+    r-cran-data.table \
   && rm -rf /var/lib/apt/lists/*
