@@ -12,5 +12,6 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
 # Additional C++ dependencies
     libssl-dev \
     libjsoncpp-dev \
+    libboost-all-dev \
 # Clean up
   && rm -rf /var/lib/apt/lists/*
