@@ -1,4 +1,4 @@
-FROM codesignal/java:v4.0
+FROM codesignal/java:v4.1
 
 RUN apt-get update \
     && wget http://www.scala-lang.org/files/archive/scala-2.12.5.deb \
