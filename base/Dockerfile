@@ -73,6 +73,6 @@ ADD mongod.conf /etc/mongod.conf
 ADD mongodb.conf /etc/mongodb.conf
 
 # Install git
-RUN add-apt-repository ppa:git-core/ppa -y
-    && apt-get update
+RUN add-apt-repository ppa:git-core/ppa -y \
+    && apt-get update \
     && apt-get install git -y
