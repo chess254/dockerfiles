@@ -1,5 +1,5 @@
 ###
-# A base Docker Container, build on ubuntu and includes node.js and mysql.
+# A base Docker Container, build on ubuntu and includes node.js, mysql, mongodb, and git.
 ###
 FROM ubuntu:16.04
 
@@ -71,3 +71,9 @@ RUN mkdir -p /data/mongodb /data/configdb \
 
 ADD mongod.conf /etc/mongod.conf
 ADD mongodb.conf /etc/mongodb.conf
+
+# Install git
+RUN add-apt-repository ppa:git-core/ppa -y \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
