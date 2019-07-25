@@ -17,7 +17,6 @@ RUN conda create -n py2 -y python=2 \
        numpy \
        scipy \
        pandas \
-       atlas \
        scikit-learn \
        tensorflow=1.11.0 \
        keras \
@@ -32,7 +31,6 @@ RUN conda create -n py2 -y python=2 \
        numpy \
        scipy \
        pandas \
-       atlas \
        scikit-learn \
        tensorflow=1.11.0 \
        keras \
@@ -42,6 +40,7 @@ RUN conda create -n py2 -y python=2 \
        PyMySQL \
        SQLAlchemy \
        toolz
+
 RUN ["/bin/bash", "-c", "source activate py3 && python -m nltk.downloader popular \
       && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log \
       && conda clean --all --yes"]
