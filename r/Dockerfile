@@ -11,4 +11,5 @@ RUN add-apt-repository -y ppa:marutter/rrutter \
     r-cran-dplyr \
     r-cran-magrittr \
     r-cran-data.table \
+    r-cran-tryCatchLog \
   && rm -rf /var/lib/apt/lists/*
