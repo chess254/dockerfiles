@@ -12,3 +12,6 @@ RUN add-apt-repository -y ppa:marutter/rrutter \
     r-cran-magrittr \
     r-cran-data.table \
   && rm -rf /var/lib/apt/lists/*
+
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'https://cloud.r-project.org/'; options(repos = r);" > ~/.Rprofile
+RUN Rscript -e "install.packages('tryCatchLog')"
