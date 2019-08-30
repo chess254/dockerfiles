@@ -1,18 +1,77 @@
 # Dockerfiles
-A collection of Dockerfiles for CodeSignal user code execution. For now, look at the `README` associated with each individual file.
 
-We are working to migrate all of these Dockerfiles to extend from the `base`.
+A collection of Dockerfiles for CodeSignal user code execution. Look at the `README` associated with each individual file to find information no a specific image.
 
 ## Instructions for releasing new versions
-Note - If you're updating a base version that other containers extend, update the files to reference the yet-to-be-created version of the base container.
-1. Create a new github release tagged with a version, `v1.2.3`
-1. Go to [dockerhub](https://hub.docker.com/r/codesignal/)
-1. Edit the build settings of updated languages to include a new build for the tag associated with the github release. If you have an update to a `base`, you'll need to go and create tagged releases for all dockerfiles that extend that base version.
-1. If you have created a new dockerfile for a language, you'll need to add that as a new repository on Dockerhub.
-   1. Click on "Create Automated Build" from the dropdown at the top.
-   1. Create a build from github, select the CodeSignal/dockerfiles github repository.
-   1. Name the Dockerhub repo after the language and add a quick description.
-   1. Click `click here to customize behavior` link, this will enable you to configure builds by github release tag.
-   1. Link to the github release tag you want, release it with the appropriate Dockerhub version. (Current :v1.0 languages all extend base:v1.0, and :v1.1 releases all extend base:v1.1)
-   1. Save and confirm that specified tag is building on dockerhub. 
+
+### Updating the image itself:
+
+1. Go to [dockerhub](https://hub.docker.com/?namespace=codesignal), and verify that the image you're updating has an automated build set up for it. The build you're looking for should have the following setup:
+   * Docker Tag: `{\1}`
+   * Source: `/^YOUR_DOCKER_IMAGE\/(v[0-9.]+)$/`
+   * Build Status: can be anything
+   * Autobuild: enabled
+   * Build caching: enabled
+2. Create a new GitHub release tagged with docker image name and new version. It should match automated build source, i.e. be something like `YOUR_DOCKER_IMAGE/IMAGE_VERSION`. For example:
+   * `r/v5.1`
+   * `java/v4.0.2`
+3. Go back to Dockerhub, and verify that the build started successfully.
+4. After the build is finished, verify that it was successful, and **make sure there are no errors in the logs**. Sometimes builds finish successfully even though the installation is not fully successful. For example, that's what happened to Swift image in [this](https://cloud.docker.com/u/codesignal/repository/registry-1.docker.io/codesignal/swift/builds/0ba57fcb-7639-448d-b00e-91b89c75765b) build.
    
+### Updating image dependencies:
+
+Check out [build dependencies](#build-tree) to figure out if the image you're updating has any dependencies. If it does:
+
+1. Go to [dockerhub](https://hub.docker.com/?namespace=codesignal), and verify that all images that depend on the base image have automated builds set up. The build you're looking for should have the following setup:
+   * Docker Tag: `{\1}`
+   * Source: `/^based-on\/YOUR_DOCKER_IMAGE\/(v[0-9.]+)$/`
+   * Build Status: can be anything
+   * Autobuild: enabled
+   * Build caching: enabled
+2. Create a new GitHub release tagged with docker image name and new version. It should match automated build source, i.e. be something like `based-on/YOUR_DOCKER_IMAGE/IMAGE_VERSION`. For example:
+   * `based-on/ubuntu-base/v5.0`
+   * `based-on/java/v5.0`
+   
+   Make sure `IMAGE_VERSION` will work for all of the dependencies!
+3. For every dependent image, verify that the build started and finished successfully.
+4. If one of the dependencies, in turn, has other dependencies, repeat these steps for the `UPDATED_IMAGE`. This should only happen if you update `ubuntu-base`.
+   
+## <a name="build-tree"></a>Build dependencies:
+
+* ubuntu-base
+  * clojure
+  * coffeescript
+  * cpp
+  * cs
+  * d-env
+  * dart
+  * erlang
+    * elixir
+  * go
+  * haskell
+  * java
+    * groovy
+    * java-project
+    * kotlin
+    * scala
+  * js
+  * julia-1
+  * lisp
+  * lua
+  * nim
+  * ocaml
+  * octave
+  * pascal
+  * perl
+  * php
+  * python
+  * r-env
+  * ruby
+  * rust
+  * smalltalk
+  * swift
+  * swift-4
+  * tcl
+  * typescript
+* mysql
+* galen
