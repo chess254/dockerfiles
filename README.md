@@ -2,7 +2,12 @@
 
 A collection of Dockerfiles for CodeSignal user code execution. Look at the `README` associated with each individual file to find information no a specific image.
 
-## Instructions for releasing new versions
+## Creating or editing a Dockerfile
+
+Run your Dockerfile through this linting tool to look for possible bugs or optimizations:
+https://www.fromlatest.io/#/
+
+## Releasing new versions
 
 ### Updating the image itself:
 
