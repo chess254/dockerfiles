@@ -7,13 +7,14 @@ FROM codesignal/ubuntu-base:v5.0
 RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 
-# need this to skip Y/n questions during SDK install
+# skip Y/n questions during SDK install
 ENV DEBIAN_FRONTEND='noninteractive'
 
 # Install .NET SDK
-RUN apt-get install apt-transport-https
-RUN apt-get update
-RUN apt-get -yq install dotnet-sdk-2.2
+RUN apt-get -yq install apt-transport-https --no-install-recommends \
+  && apt-get update \
+  && apt-get -yq install dotnet-sdk-2.2 --no-install-recommends \
+  && rm -rf /var/lib/apt/lists/*
 
 # Verify
 RUN dotnet --version
