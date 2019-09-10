@@ -27,6 +27,10 @@ RUN conda create -n py2 -y python=2 \
        MySql-Python \
        SQLAlchemy \
        toolz \
+       appdirs \
+       attrs \
+       click \
+       toml \
     && conda create -n py3 -y python=3 \
        numpy \
        scipy \
@@ -39,7 +43,11 @@ RUN conda create -n py2 -y python=2 \
        mysql-connector-python \
        PyMySQL \
        SQLAlchemy \
-       toolz
+       toolz \
+       appdirs \
+       attrs \
+       click \
+       toml
 
 RUN ["/bin/bash", "-c", "source activate py3 && python -m nltk.downloader popular \
       && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log \
