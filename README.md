@@ -44,7 +44,6 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
 ## <a name="build-tree"></a>Build dependencies:
 
 * ubuntu-base
-  * clojure
   * coffeescript
   * cpp
   * cs
@@ -55,6 +54,7 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * go
   * haskell
   * java
+    * clojure
     * groovy
     * java-project
     * kotlin
