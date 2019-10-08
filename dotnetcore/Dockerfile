@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND='noninteractive'
 # Install .NET SDK
 RUN apt-get -yq install apt-transport-https --no-install-recommends \
   && apt-get update \
-  && apt-get -yq install dotnet-sdk-2.2 --no-install-recommends \
+  && apt-get -yq install dotnet-sdk-3.0 --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 # Verify
