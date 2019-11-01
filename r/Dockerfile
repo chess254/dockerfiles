@@ -11,7 +11,8 @@ RUN add-apt-repository -y ppa:marutter/rrutter \
     r-cran-dplyr \
     r-cran-magrittr \
     r-cran-data.table \
+    r-cran-futile.logger \
+    r-cran-devtools \
   && rm -rf /var/lib/apt/lists/*
 
-RUN echo "r <- getOption('repos'); r['CRAN'] <- 'https://cloud.r-project.org/'; options(repos = r);" > ~/.Rprofile
-RUN Rscript -e "install.packages('tryCatchLog')"
+RUN Rscript -e "library(remotes); install_github('aryoda/tryCatchLog');"
