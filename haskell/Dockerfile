@@ -8,6 +8,7 @@ RUN add-apt-repository -y ppa:hvr/ghc \
 
 ENV PATH /root/.cabal/bin:/root/.local/bin:/opt/cabal/3.0/bin:/opt/ghc/8.8.1/bin:$PATH
 
-# install aeson lib to print JSON
+# install aeson lib to print JSON, and split package
 RUN cabal update \
-  && cabal install aeson --global --lib
+  && cabal install aeson --global --lib \
+  && cabal install split --global --lib
