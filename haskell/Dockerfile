@@ -11,4 +11,6 @@ ENV PATH /root/.cabal/bin:/root/.local/bin:/opt/cabal/3.0/bin:/opt/ghc/8.8.1/bin
 # install aeson lib to print JSON, and split package
 RUN cabal update \
   && cabal install aeson --global --lib \
-  && cabal install split --global --lib
+  && cabal install split --global --lib \
+  && cabal install network-uri --global --lib \
+  && cabal install regex-posix --global --lib
