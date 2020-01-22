@@ -3,11 +3,11 @@ FROM codesignal/ubuntu-base:v5.0
 # Install PHP & dependencies
 RUN add-apt-repository ppa:ondrej/php \
   && apt-get -qq -y update \
-  && apt-get install -y --no-install-recommends php7.2 \
+  && apt-get install -y --no-install-recommends php7.4 \
   && apt-get install -y --no-install-recommends \
-    php7.2-curl \
-    php7.2-mysql \
-    php7.2-xml \
+    php7.4-curl \
+    php7.4-mysql \
+    php7.4-xml \
   && rm -rf /var/lib/apt/lists/*
 
 # Install PHPUnit
