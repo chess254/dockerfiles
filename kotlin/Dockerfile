@@ -1,6 +1,6 @@
 FROM codesignal/java:v5.0
 
-RUN KOTLIN_VERSION=1.2.40 \
+RUN KOTLIN_VERSION=1.3.61 \
     KOTLIN_COMPILER_URL=https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip ; \
   apt-get update \
   && apt-get install -y --no-install-recommends zip unzip \
