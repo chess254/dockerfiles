@@ -32,7 +32,20 @@ RUN wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-mave
     && rm /opt/apache-maven-3.6.3-bin.tar.gz \
     && rm -rf /var/lib/apt/lists/*
 
+#install javafx
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unzip \
+    && wget https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-sdk.zip -P /opt/ \
+    && unzip /opt/openjfx-11.0.2_linux-x64_bin-sdk.zip -d /opt/javafx \
+    && apt-get remove -qq -y unzip \
+    && apt-get autoremove -qq -y \
+    && apt-get autoclean \
+    && rm /opt/openjfx-11.0.2_linux-x64_bin-sdk.zip \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
     M2_HOME=/opt/maven \
     MAVEN_HOME=/opt/maven \
+    PATH_TO_FX=/opt/javafx/javafx-sdk-11.0.2/lib \
+    JAVA_HOME=/usr/lib/jvm/java-13-oracle \
     PATH=$M2_HOME/bin:/opt/gradle/gradle-6.1.1/bin:$PATH
