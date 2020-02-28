@@ -20,7 +20,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 #Install Node.js
 RUN apt-get update \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && apt-get -qq -y autoremove \
     && apt-get autoclean \
