@@ -44,11 +44,13 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
 ## <a name="build-tree"></a>Build dependencies:
 
 * ubuntu-base
+  * acceptance-tests
   * coffeescript
   * cpp
   * cs
   * d-env
   * dart
+  * dotnetcore
   * erlang
     * elixir
   * go
@@ -75,7 +77,6 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * rust
   * smalltalk
   * swift
-  * swift-4
   * tcl
   * typescript
 * mysql

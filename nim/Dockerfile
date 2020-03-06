@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.0
+FROM codesignal/ubuntu-base:v5.1
 
 RUN apt-get update \
     && add-apt-repository -y ppa:jonathonf/nimlang \
