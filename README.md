@@ -8,6 +8,7 @@ Run your Dockerfile through this linting tool to look for possible bugs or optim
 https://www.fromlatest.io/#/
 
 ## Releasing new versions
+Please follow [the rules of semantic versioning](https://semver.org/).
 
 ### Updating the image itself:
 
