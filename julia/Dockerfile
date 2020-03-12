@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.0
+FROM codesignal/ubuntu-base:v5.5
 
 #Install Julia 0.6.2, from https://github.com/docker-library/julia/blob/master/Dockerfile
 RUN JULIA_PATH=/usr/local/julia \
