@@ -1,8 +1,7 @@
 FROM codesignal/ubuntu-base:v5.5
 
-#Install Julia 0.6.2, from https://github.com/docker-library/julia/blob/master/Dockerfile
 RUN JULIA_PATH=/usr/local/julia \
-    JULIA_VERSION=0.6.2 ;\
+    JULIA_VERSION=1.0.1 ;\
   apt-get update \
   && mkdir $JULIA_PATH \
   && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" -o julia.tar.gz \
