@@ -28,6 +28,7 @@ RUN echo "mysql-apt-config	mysql-apt-config/select-server select mysql-8.0" | de
     && echo "mysql-apt-config	mysql-apt-config/select-product select OK" | debconf-set-selections \
     && echo "mysql-community-server mysql-community-server/root-pass password root" | debconf-set-selections \
     && echo "mysql-community-server mysql-community-server/re-root-pass password root" | debconf-set-selections \
+    && echo "mysql-server mysql-server/lowercase-table-names select Enabled" | debconf-set-selections \
     && wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb -P /tmp/ \
     && dpkg -i /tmp/mysql-apt-config_0.8.13-1_all.deb \
     && rm -rf /tmp/* \

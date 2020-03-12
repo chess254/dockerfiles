@@ -30,6 +30,7 @@ RUN apt-get update \
 RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list \
     && echo "mysql-server mysql-server/root_password password root" | debconf-set-selections \
     && echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections \
+    && echo "mysql-server mysql-server/lowercase-table-names select Enabled" | debconf-set-selections \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
        libmysqlclient-dev  \
