@@ -34,11 +34,13 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
    * Build Status: can be anything
    * Autobuild: enabled
    * Build caching: enabled
-2. Create a new GitHub release tagged with docker image name and new version. It should match automated build source, i.e. be something like `based-on/YOUR_DOCKER_IMAGE/IMAGE_VERSION`. For example:
-   * `based-on/ubuntu-base/v5.0`
-   * `based-on/java/v5.0`
-   
-   Make sure `IMAGE_VERSION` will work for all of the dependencies!
+2. Create a new GitHub release tagged with docker image name and new version. It should match automated build source, i.e. be something like `based-on/YOUR_DOCKER_IMAGE/IMAGE_VERSION`, where:
+   * `YOUR_DOCKER_IMAGE` refers to the base image you've already updated;
+   * `IMAGE_VERSION` refers to the new version for the languages that is about to be updated. Therefore, make sure the version does not collide with the versions of any of the dependent languages that you are updating.
+
+   For example:
+      * `based-on/ubuntu-base/v5.0`: The images that are based on `ubuntu-base` will be updated and their new versions are `v5.0`
+      * `based-on/java/v5.0`: The images that are based on `java` will be updated and their new versions are `v5.0`
 3. For every dependent image, verify that the build started and finished successfully.
 4. If one of the dependencies, in turn, has other dependencies, repeat these steps for the `UPDATED_IMAGE`. This should only happen if you update `ubuntu-base`.
    
