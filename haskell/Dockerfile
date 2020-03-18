@@ -8,9 +8,12 @@ RUN add-apt-repository -y ppa:hvr/ghc \
 
 ENV PATH /root/.cabal/bin:/root/.local/bin:/opt/cabal/3.0/bin:/opt/ghc/8.8.1/bin:$PATH
 
-# install aeson lib to print JSON, and split package
+# install additional global packages
 RUN cabal update \
   && cabal install aeson --global --lib \
   && cabal install split --global --lib \
   && cabal install network-uri --global --lib \
-  && cabal install regex-posix --global --lib
+  && cabal install regex-base --global --lib \
+  && cabal install regex-posix --global --lib \
+  && cabal install regex-compat --global --lib \
+  && cabal install regex-pcre-builtin --global --lib
