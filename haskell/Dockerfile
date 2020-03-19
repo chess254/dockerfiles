@@ -13,7 +13,4 @@ RUN cabal update \
   && cabal install aeson --global --lib \
   && cabal install split --global --lib \
   && cabal install network-uri --global --lib \
-  && cabal install regex-base --global --lib \
-  && cabal install regex-posix --global --lib \
-  && cabal install regex-compat --global --lib \
-  && cabal install regex-pcre-builtin --global --lib
+  && cabal install regex-posix --global --lib
