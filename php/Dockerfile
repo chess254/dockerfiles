@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.1
+FROM codesignal/ubuntu-base:v5.5
 
 # Install PHP & dependencies
 RUN add-apt-repository ppa:ondrej/php \

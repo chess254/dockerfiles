@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.1
+FROM codesignal/ubuntu-base:v5.5
 
 # install GHC and Cabal
 RUN add-apt-repository -y ppa:hvr/ghc \

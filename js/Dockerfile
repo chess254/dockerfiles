@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.1
+FROM codesignal/ubuntu-base:v5.5
 
 # Node and npm inherited from ubuntu-base.
 RUN npm install -g \
