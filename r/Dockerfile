@@ -13,6 +13,8 @@ RUN add-apt-repository -y ppa:marutter/rrutter \
     r-cran-data.table \
     r-cran-futile.logger \
     r-cran-devtools \
+    r-cran-rmysql \
+    r-cran-rpostgres \
   && rm -rf /var/lib/apt/lists/*
 
 RUN Rscript -e "library(remotes); install_github('aryoda/tryCatchLog');"

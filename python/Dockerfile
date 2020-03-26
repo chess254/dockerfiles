@@ -26,6 +26,7 @@ RUN conda create -n py2 -y python=2 \
        mysql-connector-python \
        MySql-Python \
        SQLAlchemy \
+       Psycopg2 \
        toolz \
        appdirs \
        attrs \
@@ -43,6 +44,7 @@ RUN conda create -n py2 -y python=2 \
        mysql-connector-python \
        PyMySQL \
        SQLAlchemy \
+       Psycopg2 \
        toolz \
        appdirs \
        attrs \
