@@ -1,5 +1,3 @@
-# SHOULD DELETE!!!!
-
 FROM codesignal/erlang:v5.5
 
 RUN apt-get update \

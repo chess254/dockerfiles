@@ -1,6 +1,3 @@
-# ADDING THIS FOR DEV PURPOSE
-# SHOULD DELETE LATER
-
 FROM codesignal/ubuntu-base:v5.5
 
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)

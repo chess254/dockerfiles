@@ -1,5 +1,3 @@
-# SHOULD DELETE!!!!
-
 FROM codesignal/ubuntu-base:v5.5
 
 RUN apt-get update \

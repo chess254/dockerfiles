@@ -1,5 +1,3 @@
-# SHOULD DELETE!!!!
-
 FROM codesignal/ubuntu-base:v5.5
 
 RUN add-apt-repository -y ppa:marutter/rrutter \
