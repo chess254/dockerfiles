@@ -4,7 +4,7 @@
 FROM ubuntu:16.04
 
 # Set proper locale
-RUN apt-get clean \
+RUN apt-get  clean \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
       bc \
