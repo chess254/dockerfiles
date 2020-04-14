@@ -10,7 +10,8 @@ jobs:
           name: BBBBuild and push Docker image
           command: |
             echo Starting
-#            declare -A REPOMAP
+
+            declare -A REPOMAP
             REPOMAP[r]='r-env'
             REPOMAP[d]='d-env'
 
