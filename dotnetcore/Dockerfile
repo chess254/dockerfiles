@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.5
+FROM codesignal/ubuntu-base:v5.6
 
 # Based on SDK instructions here:
 # https://dotnet.microsoft.com/download/linux-package-manager/ubuntu16-04/sdk-current
