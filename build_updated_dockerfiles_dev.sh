@@ -20,8 +20,6 @@ echo ------List of updated files
 FILES=$(git diff-tree --name-only -r origin/master HEAD)
 for F in $FILES; do echo $F; done
 
-exit 0
-
 REGEX="(.*)\/Dockerfile"
 for F in $FILES
 do
@@ -37,7 +35,9 @@ do
     fi
 
     echo dockerfile: $IMAGE '->' repo: $REPO
-    docker build -t codesignal/$REPO:dev $IMAGE
+    docker build -t codesignal/$REPO:dev $IMAGE > /dev/null
+    echo Exit code $?
+
     #docker push codesignal/$REPO:dev
   fi
   echo --------------------------------------------------------------------
