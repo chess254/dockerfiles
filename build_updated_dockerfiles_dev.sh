@@ -38,7 +38,8 @@ do
     docker build -t codesignal/$REPO:dev $IMAGE > /dev/null
     echo Exit code $?
 
-    #docker push codesignal/$REPO:dev
+    echo "Trying to push with dev tag"
+    docker push codesignal/$REPO:dev
   fi
   echo --------------------------------------------------------------------
 done
