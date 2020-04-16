@@ -10,8 +10,8 @@ RUN npm install -g \
     debug \
     forever  \
     http \
-    jquery \
     lodash \
+    jquery \
     mocha \
     mongodb \
     mysql \
