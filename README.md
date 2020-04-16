@@ -50,6 +50,7 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * acceptance-tests
   * coffeescript
   * cpp
+    * opencv
   * cs
   * d-env
   * dart
