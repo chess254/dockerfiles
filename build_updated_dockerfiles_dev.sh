@@ -35,7 +35,7 @@ do
     fi
 
     echo dockerfile: $IMAGE '->' repo: $REPO
-    docker build -t codesignal/$REPO:dev $IMAGE >
+    docker build -t codesignal/$REPO:dev $IMAGE
     echo Exit code $?
 
     echo "Trying to push with dev tag"
