@@ -25,6 +25,4 @@ RUN npm install -g \
     when \
     ws
 
-RUN echo 45
-
 ENV NODE_PATH=/usr/lib/node_modules/
