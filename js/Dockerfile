@@ -10,8 +10,8 @@ RUN npm install -g \
     debug \
     forever  \
     http \
-    lodash \
     jquery \
+    lodash \
     mocha \
     mongodb \
     mysql \
@@ -24,5 +24,7 @@ RUN npm install -g \
     validator  \
     when \
     ws
+
+RUN echo 45
 
 ENV NODE_PATH=/usr/lib/node_modules/
