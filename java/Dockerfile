@@ -2,10 +2,10 @@ FROM codesignal/ubuntu-base:v5.6
 
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
-    && echo oracle-java13-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
+    && echo oracle-java14-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
     && apt-get install -y --no-install-recommends \
-        oracle-java13-installer \
-        oracle-java13-set-default \
+        oracle-java14-installer \
+        oracle-java14-set-default \
         libjackson2-core-java \
         libjackson2-databind-java \
         libmysql-java \
