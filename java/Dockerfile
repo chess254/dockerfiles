@@ -47,5 +47,5 @@ ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
     M2_HOME=/opt/maven \
     MAVEN_HOME=/opt/maven \
     PATH_TO_FX=/opt/javafx/javafx-sdk-11.0.2/lib \
-    JAVA_HOME=/usr/lib/jvm/java-13-oracle \
+    JAVA_HOME=/usr/lib/jvm/java-14-oracle \
     PATH=$M2_HOME/bin:/opt/gradle/gradle-6.1.1/bin:$PATH
