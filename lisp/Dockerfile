@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.5
+FROM codesignal/ubuntu-base:v5.6
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \

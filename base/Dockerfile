@@ -38,9 +38,6 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
        libpq5 \
        libssl-dev \
        mysql-server-5.7 \
-       postgresql \
-       postgresql-client \
-       postgresql-contrib \
     && mkdir -p /var/lib/mysql \
     && mkdir -p /var/run/mysqld \
     && mkdir -p /var/log/mysql \
@@ -77,4 +74,16 @@ ADD mongodb.conf /etc/mongodb.conf
 RUN add-apt-repository ppa:git-core/ppa -y \
     && apt-get update \
     && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installing PostgreSQL with extensions
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc/apt/sources.list.d/pgdg.list \
+    && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+       postgresql-12 \
+       postgresql-client-12 \
+       postgresql-contrib-12 \
+       postgis \
+       postgresql-12-postgis-2.5 \
     && rm -rf /var/lib/apt/lists/*

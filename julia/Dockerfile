@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.5
+FROM codesignal/ubuntu-base:v5.6
 
 RUN JULIA_PATH=/usr/local/julia \
     JULIA_VERSION=1.0.1 ;\

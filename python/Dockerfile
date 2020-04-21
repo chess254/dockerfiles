@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v5.5
+FROM codesignal/ubuntu-base:v5.6
 
 RUN apt-get -qq update \
     && apt-get -qq -y install bzip2 --no-install-recommends \
