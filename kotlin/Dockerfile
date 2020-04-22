@@ -1,4 +1,4 @@
-FROM codesignal/java:v5.5
+FROM codesignal/java:v5.6
 
 RUN KOTLIN_VERSION=1.3.61 \
     KOTLIN_COMPILER_URL=https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip ; \
