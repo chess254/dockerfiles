@@ -15,12 +15,12 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 # install gradle
 RUN apt-get update \
     && apt-get install -y --no-install-recommends unzip \
-    && wget https://services.gradle.org/distributions/gradle-6.1.1-bin.zip -P /opt/ \
-    && unzip /opt/gradle-6.1.1-bin.zip -d /opt/gradle \
+    && wget https://services.gradle.org/distributions/gradle-6.3-bin.zip -P /opt/ \
+    && unzip /opt/gradle-6.3-bin.zip -d /opt/gradle \
     && apt-get remove -qq -y unzip \
     && apt-get autoremove -qq -y \
     && apt-get autoclean \
-    && rm /opt/gradle-6.1.1-bin.zip \
+    && rm /opt/gradle-6.3-bin.zip \
     && rm -rf /var/lib/apt/lists/*
 
 # install maven
@@ -48,4 +48,4 @@ ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
     MAVEN_HOME=/opt/maven \
     PATH_TO_FX=/opt/javafx/javafx-sdk-11.0.2/lib \
     JAVA_HOME=/usr/lib/jvm/java-14-oracle \
-    PATH=$M2_HOME/bin:/opt/gradle/gradle-6.1.1/bin:$PATH
+    PATH=$M2_HOME/bin:/opt/gradle/gradle-6.3/bin:$PATH
