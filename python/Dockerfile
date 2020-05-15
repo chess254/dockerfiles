@@ -9,16 +9,17 @@ RUN apt-get -qq update \
     && conda update conda \
     && apt-get -qq -y remove bzip2 \
     && apt-get -qq -y autoremove \
-    && apt-get autoclean \
+    && apt-get autoclean \ 
+    && apt-get -qq -y install python-pip python-setuptools --no-install-recommends \
+    && python2 -m pip install -U pip \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/conda/bin:$PATH
-RUN conda create -n py2 -y python=2 \
+RUN conda create -n py2 -c conda-forge -y python=2 \
        numpy \
        scipy \
        pandas \
        scikit-learn \
-       tensorflow=1.11.0 \
        keras \
        nltk \
        requests \
@@ -32,12 +33,32 @@ RUN conda create -n py2 -y python=2 \
        attrs \
        click \
        toml \
-    && conda create -n py3 -y python=3 \
+       spacy \
+       gensim \
+       matplotlib \
+       seaborn \
+       pytest \
+       pymongo \
+       flask \
+       flask-sqlalchemy \
+       flask-migrate \
+       requests \
+       ipywidgets \
+       pandas-profiling \
+       plotly \
+       tweepy \
+       category_encoders \
+       eli5 \
+       pdpbox \
+       shap \
+       xgboost \
+       spacy-model-en_core_web_md \
+       tensorflow=2.1 \
+    && conda create -n py3 -c conda-forge -y python=3 \
        numpy \
        scipy \
        pandas \
        scikit-learn \
-       tensorflow=1.11.0 \
        keras \
        nltk \
        requests \
@@ -49,7 +70,30 @@ RUN conda create -n py2 -y python=2 \
        appdirs \
        attrs \
        click \
-       toml
+       toml \
+       spacy \
+       gensim \
+       matplotlib \
+       seaborn \
+       pytest \
+       pymongo \
+       flask \
+       flask-sqlalchemy \
+       flask-migrate \
+       requests \
+       ipywidgets \
+       pandas-profiling \
+       plotly \
+       tweepy \
+       category_encoders \
+       eli5 \
+       pdpbox \
+       shap \
+       xgboost \
+      spacy-model-en_core_web_md \
+      tensorflow=2.1
+
+RUN python2 -m pip install basilica && python -m pip install basilica
 
 RUN ["/bin/bash", "-c", "source activate py3 && python -m nltk.downloader popular \
       && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log \
