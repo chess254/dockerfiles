@@ -5,7 +5,7 @@ RUN apt-get -qq update \
     && curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh \
     && bash /tmp/miniconda.sh -bfp /usr/local \
     && rm -rf /tmp/miniconda.sh \
-    && conda install -y python=3 \
+    && conda install -y python=3.8.2 \
     && conda update conda \
     && apt-get -qq -y remove bzip2 \
     && apt-get -qq -y autoremove \
@@ -15,7 +15,7 @@ RUN apt-get -qq update \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/conda/bin:$PATH
-RUN conda create -n py2 -c conda-forge -y python=2 \
+RUN conda create -n py2 -c conda-forge -y python=2.7.18 \
        numpy \
        scipy \
        pandas \
