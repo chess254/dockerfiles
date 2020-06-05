@@ -75,7 +75,8 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * pascal
   * perl
   * php
-  * python
+  * python2
+  * python3
   * r-env
   * ruby
   * rust
