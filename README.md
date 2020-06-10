@@ -1,6 +1,6 @@
 # Dockerfiles
 
-A collection of Dockerfiles for CodeSignal user code execution. Look at the `README` associated with each individual file to find information no a specific image.
+A collection of Dockerfiles for CodeSignal user code execution. Look at the `README` associated with each individual file to find information on a specific image.
 
 ## Creating or editing a Dockerfile
 

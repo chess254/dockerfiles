@@ -13,18 +13,30 @@ RUN apt-get clean \
       build-essential \
       curl \
       wget \
+      apt-transport-https \
+      apt-utils \
+      xz-utils \ 
+      gnupg \
+      python-dev \
   && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
+
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-#Install Node.js
-RUN apt-get update \
-    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
-    && apt-get -qq -y autoremove \
-    && apt-get autoclean \
-    && rm -rf /var/lib/apt/lists/*
+# Installing nvm
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+ENV NVM_DIR /root/.nvm
+
+# Installing Node 12.18.0 with nvm
+
+ENV NODE_VERSION 12.18.0
+
+RUN . $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default
+
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 #Installing mysql server
 RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list \
@@ -63,6 +75,7 @@ RUN apt-get update \
     && apt-get install -y mongodb-org=4.0.5 mongodb-org-server=4.0.5 mongodb-org-shell=4.0.5 mongodb-org-mongos=4.0.5 mongodb-org-tools=4.0.5 \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/lib/mongodb
+
 # Setup mongodb server
 RUN mkdir -p /data/mongodb /data/configdb \
     && chown -R mongodb:mongodb /data/mongodb /data/configdb
@@ -87,3 +100,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc
        postgis \
        postgresql-12-postgis-2.5 \
     && rm -rf /var/lib/apt/lists/*
+
+# Installing Node 10.15.3
+
+RUN . $NVM_DIR/nvm.sh && nvm install 10.15.3
