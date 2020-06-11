@@ -25,4 +25,4 @@ RUN npm install -g \
     when \
     ws
 
-ENV NODE_PATH=/usr/lib/node_modules/
+ENV NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
