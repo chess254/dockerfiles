@@ -1,14 +1,16 @@
 FROM codesignal/ubuntu-base:v6.0
 
 # Node and npm inherited from ubuntu-base.
-RUN npm install -g \
+RUN npm install -g --unsafe-perm=true \
     async \
+    axios \
     chai \
     co \
     connect \
     crypto-js \
     debug \
-    forever  \
+    forever \
+    futil \
     http \
     jquery \
     lodash \
@@ -16,6 +18,8 @@ RUN npm install -g \
     mongodb \
     mysql \
     mysql2 \
+    node-fetch \
+    rambda \
     request \
     sequelize \
     shelljs \
