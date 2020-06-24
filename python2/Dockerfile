@@ -69,4 +69,5 @@ RUN python -m pip install \
   basilica \
   gensim \
   tensorflow \
+  timeout_decorator \
   && python -m spacy download en_core_web_sm
