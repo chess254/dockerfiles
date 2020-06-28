@@ -37,10 +37,10 @@ RUN rm -rf /var/lib/apt/lists/*
 
 ENV GRADLE_USER_HOME=/root/.gradle
 
-#COPY minimal-android-app /root/minimal-android-app
-##
-#RUN cd /root/minimal-android-app \
-#    && ./gradlew assembleDebug
+COPY minimal-android-app /root/minimal-android-app
+#
+RUN cd /root/minimal-android-app \
+    && ./gradlew assembleDebug
 
 # Go to workspace
 #RUN mkdir -p /opt/workspace
