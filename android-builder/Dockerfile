@@ -1,4 +1,5 @@
-FROM codesignal/ubuntu-base:v6.0
+FROM codesignal/java:v6.0
+
 
 # Install some dependencies
 RUN dpkg --add-architecture i386 \
@@ -7,21 +8,22 @@ RUN dpkg --add-architecture i386 \
     libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1
 
 # Install java
-RUN apt-get install -y openjdk-8-jdk-headless
-
-# Install Android SDK
-RUN cd /opt \
-    && wget --output-document=android-sdk.zip --quiet \
-    https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
-    && unzip android-sdk.zip -d /opt/android-sdk \
-    && rm -f android-sdk.zip
-
-# Setup environment
-ENV ANDROID_HOME /opt/android-sdk
-ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
-
-# Install the platform tools and the SDK tools
-RUN echo yes | sdkmanager "platform-tools" "platforms;android-28"
+#RUN apt-get install -y openjdk-8-jdk-headless
+ENV JAVA_HOME=/usr/lib/jvm/java-14-oracle/
+#
+## Install Android SDK
+#RUN cd /opt \
+#    && wget --output-document=android-sdk.zip --quiet \
+#    https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
+#    && unzip android-sdk.zip -d /opt/android-sdk \
+#    && rm -f android-sdk.zip
+#
+## Setup environment
+#ENV ANDROID_HOME /opt/android-sdk
+#ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+#
+## Install the platform tools and the SDK tools
+#RUN echo yes | sdkmanager "platform-tools" "platforms;android-28"
 
 # Install gradle
 #RUN apt-get update
