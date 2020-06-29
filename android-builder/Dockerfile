@@ -10,20 +10,20 @@ RUN dpkg --add-architecture i386 \
 # Install java
 #RUN apt-get install -y openjdk-8-jdk-headless
 ENV JAVA_HOME=/usr/lib/jvm/java-14-oracle/
+
+# Install Android SDK
+RUN cd /opt \
+    && wget --output-document=android-sdk.zip --quiet \
+    https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
+    && unzip android-sdk.zip -d /opt/android-sdk \
+    && rm -f android-sdk.zip
 #
-## Install Android SDK
-#RUN cd /opt \
-#    && wget --output-document=android-sdk.zip --quiet \
-#    https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
-#    && unzip android-sdk.zip -d /opt/android-sdk \
-#    && rm -f android-sdk.zip
-#
-## Setup environment
-#ENV ANDROID_HOME /opt/android-sdk
-#ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
-#
-## Install the platform tools and the SDK tools
-#RUN echo yes | sdkmanager "platform-tools" "platforms;android-28"
+# Setup environment
+ENV ANDROID_HOME /opt/android-sdk
+ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+
+# Install the platform tools and the SDK tools
+RUN echo yes | sdkmanager "platform-tools" "platforms;android-28"
 
 # Install gradle
 #RUN apt-get update
