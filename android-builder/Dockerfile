@@ -21,13 +21,7 @@ ENV ANDROID_HOME /opt/android-sdk
 ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 
 # Install the platform tools and the SDK tools
-RUN echo yes | sdkmanager "platform-tools" \
-    "platforms;android-30" \
-    "platforms;android-29" \
-    "platforms;android-28" \
-    "platforms;android-27" \
-    "platforms;android-26" \
-    "platforms;android-25"
+RUN echo yes | sdkmanager "platform-tools" "platforms;android-28"
 
 COPY minimal-android-app /root/minimal-android-app
 
