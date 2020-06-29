@@ -12,10 +12,10 @@ RUN dpkg --add-architecture i386 \
 #RUN apt-get install -y openjdk-8-jdk-headless
 
 # Install Android SDK
-RUN cd /opt
+RUN cd /opt \
     && wget --output-document=android-sdk.zip --quiet \
     https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
-    && unzip android-sdk.zip -d /opt/android-sdk
+    && unzip android-sdk.zip -d /opt/android-sdk \
     && rm -f android-sdk.zip
 
 # Setup environment
