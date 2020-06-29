@@ -1,6 +1,4 @@
-FROM codesignal/java:v6.0
-
-RUN apt-get update
+FROM codesignal/ubuntu-base:v6.0
 
 # Install some dependencies
 RUN dpkg --add-architecture i386 \
