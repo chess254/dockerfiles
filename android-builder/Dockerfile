@@ -9,7 +9,7 @@ RUN dpkg --add-architecture i386 \
     libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1
 
 # Install java
-#RUN apt-get install -y openjdk-8-jdk-headless
+RUN apt-get install -y openjdk-8-jdk-headless
 
 # Install Android SDK
 RUN cd /opt \
