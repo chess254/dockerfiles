@@ -39,8 +39,7 @@ RUN echo yes | sdkmanager "platform-tools" \
         "build-tools;25.0.1" "build-tools;25.0.0" 
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends unzip \
-    && wget https://services.gradle.org/distributions/gradle-6.5.1-all.zip /opt/ \
+    && wget https://services.gradle.org/distributions/gradle-6.5.1-all.zip -P /opt/ \
     && unzip /opt/gradle-6.5.1-all.zip -d /opt/gradle \
     && apt-get remove -qq -y unzip \
     && apt-get autoremove -qq -y \
