@@ -10,7 +10,9 @@ RUN dpkg --add-architecture i386 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install java 8, we can't use newer java versions (https://developer.android.com/studio/write/java8-support)
-RUN apt-get install -y openjdk-8-jdk-headless
+RUN apt-get update \
+    && apt-get install -y openjdk-8-jdk-headless \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Android SDK
 RUN cd /opt \
