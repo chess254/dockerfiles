@@ -23,20 +23,12 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 # Install the platform tools and the SDK tools
 RUN echo yes | sdkmanager "platform-tools" \
     "platforms;android-30" \
-    "platforms;android-29" \
-    "platforms;android-28" \
-    "platforms;android-27" \
-    "platforms;android-26"
+    "platforms;android-29"
 
 # Different versions of build tools
 RUN echo yes | sdkmanager "platform-tools" \
         "build-tools;30.0.0" \
-        "build-tools;29.0.3" "build-tools;29.0.2" \
-        "build-tools;28.0.3" "build-tools;28.0.2" \
-        "build-tools;27.0.3" "build-tools;27.0.2" "build-tools;27.0.1" \
-        "build-tools;26.0.2" "build-tools;26.0.1" "build-tools;26.0.0" \
-        "build-tools;25.0.3" "build-tools;25.0.2" \
-        "build-tools;25.0.1" "build-tools;25.0.0" 
+        "build-tools;29.0.3" "build-tools;29.0.2"
 
 RUN apt-get update \
     && wget https://services.gradle.org/distributions/gradle-6.5.1-all.zip -P /opt/ \
@@ -51,3 +43,5 @@ RUN apt-get update \
 
 # RUN cd /root/minimal-android-app \
 #     && ./gradlew assembleDebug
+
+#1.963GB
