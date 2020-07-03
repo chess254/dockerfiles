@@ -38,6 +38,16 @@ RUN echo yes | sdkmanager "platform-tools" \
         "build-tools;25.0.3" "build-tools;25.0.2" \
         "build-tools;25.0.1" "build-tools;25.0.0" 
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unzip \
+    && wget https://services.gradle.org/distributions/gradle-6.5.1-all.zip /opt/ \
+    && unzip /opt/gradle-6.5.1-all.zip -d /opt/gradle \
+    && apt-get remove -qq -y unzip \
+    && apt-get autoremove -qq -y \
+    && apt-get autoclean \
+    && rm /opt/gradle-6.5.1-all.zip \
+    && rm -rf /var/lib/apt/lists/*
+
 # COPY minimal-android-app /root/minimal-android-app
 
 # RUN cd /root/minimal-android-app \
