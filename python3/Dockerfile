@@ -9,7 +9,8 @@ RUN apt-get update \
     libsqlite3-dev \
     python-distutils-extra \
     libffi-dev \
-    libbz2-dev  \
+    libbz2-dev \
+    liblzma-dev \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir temp \

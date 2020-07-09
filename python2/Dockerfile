@@ -8,6 +8,7 @@ RUN apt-get update \
     tcl-dev \
     libsqlite3-dev \
     libbz2-dev \
+    liblzma-dev \
   && rm -rf /var/lib/apt/lists/* 
 
 RUN mkdir temp \
@@ -33,8 +34,8 @@ ENV PATH /opt/python/${PYTHON_VERSION}/bin:$PATH
 
 RUN python -m pip install \
   pathlib \
-  numpy \
-  scipy \
+  numpy==1.16.1 \
+  scipy==1.2.2 \
   pandas \
   scikit-learn \
   keras \
@@ -68,6 +69,6 @@ RUN python -m pip install \
   xgboost \
   basilica \
   gensim \
-  tensorflow \
+  tensorflow==2.0.0 \
   timeout_decorator \
   && python -m spacy download en_core_web_sm
