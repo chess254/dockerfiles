@@ -51,7 +51,7 @@ RUN python -m pip install \
   attrs \
   click \
   toml \
-  spacy \
+  spacy==2.3.0 \
   matplotlib \
   seaborn \
   pytest \
