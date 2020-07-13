@@ -21,6 +21,7 @@ RUN npm install -g --unsafe-perm=true \
     node-fetch \
     rambda \
     request \
+    rxjs \
     sequelize \
     shelljs \
     sys \
