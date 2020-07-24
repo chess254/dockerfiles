@@ -13,5 +13,16 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     libssl-dev \
     libjsoncpp-dev \
     libboost-all-dev \
+# Required for Catch 2
+    git \
+    cmake \
+# Install Catch 2
+  && git clone https://github.com/catchorg/Catch2.git \
+  && cd Catch2 \
+  && cmake -Bbuild -H. -DBUILD_TESTING=OFF \
+  && cmake --build build/ --target install \
 # Clean up
+  && apt-get remove -y git cmake \
+  && cd .. \
+  && rm -rf Catch2/ \
   && rm -rf /var/lib/apt/lists/*
