@@ -1,15 +1,15 @@
-FROM codesignal/ubuntu-base:v6.0
+FROM codesignal/ubuntu-base:v7.0
 
 ENV PYTHON_VERSION 2.7.18
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-    tk-dev \ 
+    tk-dev \
     tcl-dev \
     libsqlite3-dev \
     libbz2-dev \
     liblzma-dev \
-  && rm -rf /var/lib/apt/lists/* 
+  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir temp \
   && cd temp \
@@ -24,7 +24,7 @@ RUN mkdir temp \
     LDFLAGS=-Wl,-rpath=/opt/python/${PYTHON_VERSION}/lib,--disable-new-dtags > /dev/null 2>&1 \
   && make > /dev/null 2>&1 \
   && make install > /dev/null 2>&1 \
-  && cd .. \  
+  && cd .. \
   && curl -O https://bootstrap.pypa.io/get-pip.py \
   && /opt/python/${PYTHON_VERSION}/bin/python get-pip.py \
   && cd .. \

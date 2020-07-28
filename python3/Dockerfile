@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v6.0
+FROM codesignal/ubuntu-base:v7.0
 
 ENV PYTHON_VERSION 3.8.3
 
@@ -26,7 +26,7 @@ RUN mkdir temp \
     LDFLAGS=-Wl,-rpath=/opt/python/${PYTHON_VERSION}/lib,--disable-new-dtags > /dev/null 2>&1 \
   && make > /dev/null 2>&1 \
   && make install > /dev/null 2>&1 \
-  && cd .. \  
+  && cd .. \
   && curl -O https://bootstrap.pypa.io/get-pip.py \
   && /opt/python/${PYTHON_VERSION}/bin/python3 get-pip.py \
   && cd .. \

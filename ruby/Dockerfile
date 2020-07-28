@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v6.0
+FROM codesignal/ubuntu-base:v7.0
 
 # Install required dependencies for Ruby and ruby-build
 # https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint
