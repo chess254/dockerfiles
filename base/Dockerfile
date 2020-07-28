@@ -15,7 +15,7 @@ RUN apt-get clean \
       wget \
       apt-transport-https \
       apt-utils \
-      xz-utils \ 
+      xz-utils \
       gnupg \
       python-dev \
   && rm -rf /var/lib/apt/lists/* \
@@ -104,3 +104,11 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc
 # Installing Node 10.15.3
 
 RUN . $NVM_DIR/nvm.sh && nvm install 10.15.3
+
+# Installing PowerShell
+RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && apt-get update \
+    && apt-get install -y powershell --no-install-recommends \
+    && rm packages-microsoft-prod.deb \
+    && rm -rf /var/lib/apt/lists/*
