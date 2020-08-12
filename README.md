@@ -84,5 +84,5 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * swift
   * tcl
   * typescript
-* mysql
+  * mysql
 * galen

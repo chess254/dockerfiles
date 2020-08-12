@@ -1,27 +1,12 @@
-FROM ubuntu:16.04
+FROM codesignal/ubuntu-base:v7.0
 
-# Set proper locale
-RUN apt-get clean \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
-      bc \
-      locales \
-      software-properties-common \
-      build-essential \
-      curl \
-      wget \
-  && rm -rf /var/lib/apt/lists/* \
-  && locale-gen en_US.UTF-8
+ENV DEBIAN_FRONTEND='noninteractive'
 
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' DEBIAN_FRONTEND='noninteractive'
-
-#Install Node.js
-RUN apt-get update \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
-    && apt-get -qq -y autoremove \
-    && apt-get autoclean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get remove -yq --purge \
+       mysql-server-5.7 \
+       && apt-get autoremove -yq \
+       && apt-get autoclean -yq \
+       && rm -rf /var/lib/mysql /var/run/mysqld /var/log/mysql
 
 #Installing MySQL
 RUN echo "mysql-apt-config	mysql-apt-config/select-server select mysql-8.0" | debconf-set-selections \
@@ -45,12 +30,12 @@ RUN echo "mysql-apt-config	mysql-apt-config/select-server select mysql-8.0" | de
     && mkdir -p /var/log/mysql \
     && chown -R mysql:mysql /var/lib/mysql \
     && chown -R mysql:mysql /var/run/mysqld \
-    && chown -R mysql:mysql /var/log/mysql\
+    && chown -R mysql:mysql /var/log/mysql \
 # UTF-8 and bind-address
     && sed -i -e "$ a [client]\n\n[mysql]\n\n[mysqld]"  /etc/mysql/my.cnf \
     && sed -i -e "s/\(\[client\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf \
     && sed -i -e "s/\(\[mysql\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf \
     && sed -i -e "s/\(\[mysqld\]\)/\1\ninit_connect='SET NAMES utf8'\ncharacter-set-server = utf8\ncollation-server=utf8_unicode_ci\nbind-address = 0.0.0.0/g" /etc/mysql/my.cnf \
 # Clean up
-    && apt-get autoremove \
+    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
