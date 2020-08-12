@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v7.0
+FROM codesignal/ubuntu-base:v7.1
 
 ENV SWIFT_BRANCH=swift-5.1.4-release \
     SWIFT_VERSION=swift-5.1.4-RELEASE \

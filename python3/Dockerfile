@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v7.0
+FROM codesignal/ubuntu-base:v7.1
 
 ENV PYTHON_VERSION 3.8.3
 
