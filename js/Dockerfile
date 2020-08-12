@@ -29,5 +29,3 @@ RUN npm install -g --unsafe-perm=true \
     validator  \
     when \
     ws
-
-ENV NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules

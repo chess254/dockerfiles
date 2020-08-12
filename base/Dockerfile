@@ -38,6 +38,8 @@ RUN . $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VE
 
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
+ENV NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+
 #Installing mysql server
 RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list \
     && echo "mysql-server mysql-server/root_password password root" | debconf-set-selections \
@@ -66,7 +68,7 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-#Install mongodb server
+# Install mongodb server
 RUN apt-get update \
     && apt-get install -y mongodb-server --no-install-recommends \
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 \
@@ -82,6 +84,16 @@ RUN mkdir -p /data/mongodb /data/configdb \
 
 ADD mongod.conf /etc/mongod.conf
 ADD mongodb.conf /etc/mongodb.conf
+
+# Install vim 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install gdb 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends gdb \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install git
 RUN add-apt-repository ppa:git-core/ppa -y \
