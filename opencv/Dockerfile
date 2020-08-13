@@ -1,4 +1,4 @@
-FROM codesignal/cpp:v7.0
+FROM codesignal/cpp:v7.1
 
 ENV OPENCV_VERSION=4.2.0
 
