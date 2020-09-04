@@ -71,4 +71,5 @@ RUN python -m pip install \
   gensim \
   tensorflow==2.0.0 \
   timeout_decorator \
+  Django \
   && python -m spacy download en_core_web_sm

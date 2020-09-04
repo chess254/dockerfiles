@@ -74,4 +74,5 @@ RUN python3 -m pip install \
   gensim \
   category_encoders \
   timeout_decorator \
+  Django \
   && python3 -m spacy download en_core_web_sm
