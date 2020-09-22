@@ -1,7 +1,7 @@
 FROM codesignal/ubuntu-base:v7.1
 
-ENV SWIFT_BRANCH=swift-5.1.4-release \
-    SWIFT_VERSION=swift-5.1.4-RELEASE \
+ENV SWIFT_BRANCH=swift-5.3-release \
+    SWIFT_VERSION=swift-5.3-RELEASE \
     SWIFT_PLATFORM=ubuntu16.04 \
     SWIFT_PLATFORM_FOLDER=ubuntu1604
 
