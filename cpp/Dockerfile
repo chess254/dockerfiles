@@ -13,6 +13,8 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     libssl-dev \
     libjsoncpp-dev \
     libboost-all-dev \
+# Cpprestsdk
+    libcpprest-dev \
 # Required for Catch 2
     git \
     cmake \
