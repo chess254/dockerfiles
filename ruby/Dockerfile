@@ -22,13 +22,28 @@ RUN apt-get -qq update \
 # Install ruby-build and build Ruby
 RUN git clone https://github.com/rbenv/ruby-build.git \
     && PREFIX=/usr/local ./ruby-build/install.sh \
-    && ruby-build 2.7.1 /usr/local/ruby-2.7.1
+    && ruby-build 2.7.2 /usr/local/ruby-2.7.2
 
 # Update path to include Ruby
-ENV PATH=/usr/local/ruby-2.7.1/bin:$PATH
+ENV PATH=/usr/local/ruby-2.7.2/bin:$PATH
 
 # Install dependencies
-RUN gem install rspec pg mysql2 activemodel activerecord activesupport json faker pry
+RUN gem install \
+    activemodel \
+    activerecord \
+    activesupport \
+    excon \
+    faker \
+    faraday \
+    httparty \
+    httpclient \
+    json \
+    multipart-post \
+    mysql2 \
+    pg \
+    pry \
+    rest-client \
+    rspec
 
 # Verify the installation
 RUN ruby --version
