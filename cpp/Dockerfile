@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v7.1
+FROM codesignal/ubuntu-base:v8.0
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
   && apt-get update \

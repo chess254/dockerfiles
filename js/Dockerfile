@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v7.1
+FROM codesignal/ubuntu-base:v8.0
 
 # Node and npm inherited from ubuntu-base.
 RUN npm install -g --unsafe-perm=true \

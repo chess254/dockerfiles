@@ -1,11 +1,11 @@
-FROM codesignal/ubuntu-base:v7.1
+FROM codesignal/ubuntu-base:v8.0
 
 RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get update \
-    && echo oracle-java14-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
+    && echo oracle-java15-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections \
     && apt-get install -y --no-install-recommends \
-        oracle-java14-installer \
-        oracle-java14-set-default \
+        oracle-java15-installer \
+        oracle-java15-set-default \
         libjackson2-core-java \
         libjackson2-databind-java \
         libmysql-java \
@@ -15,12 +15,12 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
 # install gradle
 RUN apt-get update \
     && apt-get install -y --no-install-recommends unzip \
-    && wget https://services.gradle.org/distributions/gradle-6.3-bin.zip -P /opt/ \
-    && unzip /opt/gradle-6.3-bin.zip -d /opt/gradle \
+    && wget https://services.gradle.org/distributions/gradle-6.7-bin.zip -P /opt/ \
+    && unzip /opt/gradle-6.7-bin.zip -d /opt/gradle \
     && apt-get remove -qq -y unzip \
     && apt-get autoremove -qq -y \
     && apt-get autoclean \
-    && rm /opt/gradle-6.3-bin.zip \
+    && rm /opt/gradle-6.7-bin.zip \
     && rm -rf /var/lib/apt/lists/*
 
 # install maven
@@ -47,5 +47,5 @@ ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
     M2_HOME=/opt/maven \
     MAVEN_HOME=/opt/maven \
     PATH_TO_FX=/opt/javafx/javafx-sdk-11.0.2/lib \
-    JAVA_HOME=/usr/lib/jvm/java-14-oracle \
+    JAVA_HOME=/usr/lib/jvm/java-15-oracle \
     PATH=$M2_HOME/bin:/opt/gradle/gradle-6.3/bin:$PATH

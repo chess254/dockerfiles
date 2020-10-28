@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v7.1
+FROM codesignal/ubuntu-base:v8.0
 
 #Install TypeScript and testing libraries
 RUN npm install -g \

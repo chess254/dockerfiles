@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v7.1
+FROM codesignal/ubuntu-base:v8.0
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends libcurl3 \
