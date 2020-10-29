@@ -1,4 +1,4 @@
-FROM codesignal/java:v7.1
+FROM codesignal/java:v8.0
 
 ENV GROOVY_VERSION 2.4.15
 

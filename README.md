@@ -39,8 +39,9 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
    * `IMAGE_VERSION` refers to the new version for the languages that is about to be updated. Therefore, make sure the version does not collide with the versions of any of the dependent languages that you are updating.
 
    For example:
-      * `based-on/ubuntu-base/v5.0`: The images that are based on `ubuntu-base` will be updated and their new versions are `v5.0`
-      * `based-on/java/v5.0`: The images that are based on `java` will be updated and their new versions are `v5.0`
+      * `based-on/ubuntu-base/v5.0`: Images based on `ubuntu-base` will be updated to `v5.0`
+      * `based-on/java/v5.0`: Images based on `java` will be updated to `v5.0`
+      * `based-on/based-on/ubuntu-base/v5.0`: Images based on images based on `ubuntu-base` will be updated to v5.0
 3. For every dependent image, verify that the build started and finished successfully.
 4. If one of the dependencies, in turn, has other dependencies, repeat these steps for the `UPDATED_IMAGE`. This should only happen if you update `ubuntu-base`.
    
@@ -48,7 +49,6 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
 
 * ubuntu-base
   * acceptance-tests
-  * coffeescript
   * cpp
     * opencv
   * cs
@@ -66,6 +66,8 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
     * kotlin
     * scala
   * js
+    * coffeescript
+    * typescript
   * julia-1
   * lisp
   * lua
@@ -83,6 +85,5 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * smalltalk
   * swift
   * tcl
-  * typescript
   * mysql
 * galen

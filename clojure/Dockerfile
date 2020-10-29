@@ -1,4 +1,4 @@
-FROM codesignal/java:v7.1
+FROM codesignal/java:v8.0
 
 RUN CLOJURE_VERSION=1.10.1.469 ;\
   apt-get update \

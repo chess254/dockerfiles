@@ -1,9 +1,7 @@
-FROM codesignal/ubuntu-base:v8.0
+FROM codesignal/js:v8.0
 
-#Install TypeScript and testing libraries
+# Install TypeScript and testing libraries
 RUN npm install -g \
-    chai \
-    mocha \
     ts-node \
     typescript \
     @types/chai \
