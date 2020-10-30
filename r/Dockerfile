@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v8.0
+FROM codesignal/ubuntu-base:v8.0.1
 
 RUN add-apt-repository -y ppa:marutter/rrutter \
   && add-apt-repository -y ppa:marutter/c2d4u \
