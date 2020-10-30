@@ -72,12 +72,14 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 20691EEC35216C6
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/lib/mongodb
 
-# Setup mongodb server
-RUN mkdir -p /data/mongodb /data/configdb \
-    && chown -R mongodb:mongodb /data/mongodb /data/configdb
+# Copy conf and service file so that "service mongodb start" will work
+COPY mongod.conf /etc/mongod.conf
+COPY mongodb-service-init.sh /etc/init.d/mongodb
 
-ADD mongod.conf /etc/mongod.conf
-ADD mongodb.conf /etc/mongodb.conf
+# Make sure the data directories exist and service file is executable
+RUN mkdir -p /data/mongodb /data/configdb \
+    && chown -R mongodb:mongodb /data/mongodb /data/configdb \
+    && chmod +x /etc/init.d/mongodb
 
 # Install vim
 RUN apt-get update \
