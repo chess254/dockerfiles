@@ -19,7 +19,7 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     git \
     cmake \
 # Install Catch 2
-  && git clone https://github.com/catchorg/Catch2.git \
+  && git clone https://github.com/catchorg/Catch2.git -b v2.13.2 \
   && cd Catch2 \
   && cmake -Bbuild -H. -DBUILD_TESTING=OFF \
   && cmake --build build/ --target install \
