@@ -1,7 +1,9 @@
 ###
 # A base Docker Container, build on ubuntu and includes node.js, mysql, mongodb, and git.
 ###
-FROM ubuntu:16.04
+FROM mcr.microsoft.com/mssql/server:2019-CU8-ubuntu-16.04
+
+USER root
 
 # Set proper locale
 RUN apt-get clean \
