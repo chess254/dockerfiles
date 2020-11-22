@@ -8,6 +8,7 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
         oracle-java15-set-default \
         libjackson2-core-java \
         libjackson2-databind-java \
+        libjackson2-dataformat-yaml \
         libmysql-java \
         maven \
     && rm -rf /var/lib/apt/lists/*
