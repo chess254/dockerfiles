@@ -1,6 +1,6 @@
 FROM codesignal/java:v8.0.3
 
-ENV GROOVY_VERSION 2.4.15
+ENV GROOVY_VERSION 3.0.6
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends unzip \
