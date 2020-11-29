@@ -6,9 +6,6 @@ RUN add-apt-repository -y ppa:linuxuprising/java \
     && apt-get install -y --no-install-recommends \
         oracle-java15-installer \
         oracle-java15-set-default \
-        libjackson2-core-java \
-        libjackson2-databind-java \
-        libjackson2-dataformat-yaml \
         libmysql-java \
         maven \
     && rm -rf /var/lib/apt/lists/*
@@ -50,3 +47,9 @@ ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
     PATH_TO_FX=/opt/javafx/javafx-sdk-11.0.2/lib \
     JAVA_HOME=/usr/lib/jvm/java-15-oracle \
     PATH=$M2_HOME/bin:/opt/gradle/gradle-6.7/bin:$PATH
+
+# download dependencies from maven repository with build.gradle script
+COPY build.gradle /usr/share/java/build.gradle
+RUN cd /usr/share/java \
+    && gradle download \
+    && rm build.gradle
