@@ -118,7 +118,6 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsof
     && rm -rf /var/lib/apt/lists/*
 
 # Set max locked memory
-
 Run echo "*                hard    memlock         unlimited" >> /etc/security/limits.conf \
-    && echo "*                soft    memlock         unlimited" >> /etc/security/limits.conf \
-    && ulimit -l unlimited
+    && echo "*                soft    memlock         unlimited" >> /etc/security/limits.conf
+RUN ulimit -l unlimited
