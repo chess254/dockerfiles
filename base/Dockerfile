@@ -116,3 +116,7 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsof
     && apt-get install -y powershell --no-install-recommends \
     && rm packages-microsoft-prod.deb \
     && rm -rf /var/lib/apt/lists/*
+
+# Set max locked memory
+Run echo "*                hard    memlock         unlimited" >> /etc/security/limits.conf \
+    && echo "*                soft    memlock         unlimited" >> /etc/security/limits.conf
