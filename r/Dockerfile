@@ -1,9 +1,11 @@
 FROM codesignal/ubuntu-base:v8.0.1
 
-RUN add-apt-repository -y ppa:marutter/rrutter \
-  && add-apt-repository -y ppa:marutter/c2d4u \
+# Following installation steps from https://cran.r-project.org/bin/linux/ubuntu/
+RUN echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran40/" >> /etc/apt/sources.list \
+  && add-apt-repository -y ppa:marutter/rrutter \
+  && add-apt-repository -y ppa:c2d4u.team/c2d4u4.0+ \
   && apt-get update \
-  && apt-get install -y --no-install-recommends \
+  && apt-get install -y --no-install-recommends --allow-unauthenticated \
     r-base \
     r-base-dev \
   && apt-get install -y --no-install-recommends \
@@ -19,6 +21,9 @@ RUN add-apt-repository -y ppa:marutter/rrutter \
     r-cran-matrixstats \
   && rm -rf /var/lib/apt/lists/*
 
-RUN Rscript -e "install.packages('tryCatchLog')"
+# Install additional R packages
+RUN Rscript -e "install.packages('tryCatchLog')" \
+  && Rscript -e "install.packages('GMCM')"
 
-RUN Rscript -e "install.packages('GMCM')"
+# Get R version
+RUN Rscript --version
