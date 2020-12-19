@@ -76,3 +76,5 @@ RUN python3 -m pip install \
   timeout_decorator \
   Django \
   && python3 -m spacy download en_core_web_sm
+
+RUN cp /opt/python/${PYTHON_VERSION}/bin/python3 /usr/bin/python
