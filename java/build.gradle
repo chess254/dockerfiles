@@ -9,8 +9,8 @@ configurations {
 }
 
 dependencies {
-    toCopy 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.3'
-    toCopy 'mysql:mysql-connector-java:8.0.22'
+    toCopy "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$System.env.JACKSON_VERSION"
+    toCopy "mysql:mysql-connector-java:8.0.22"
 }
 
 task download(type: Copy) {
