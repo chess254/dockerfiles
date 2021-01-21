@@ -1,12 +1,9 @@
-FROM codesignal/java:v8.0.4
+FROM codesignal/java:v8.1.2
 
-RUN KOTLIN_VERSION=1.4.10 \
-    KOTLIN_COMPILER_URL=https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip ; \
-  apt-get update \
-  && apt-get install -y --no-install-recommends zip unzip \
-  && wget $KOTLIN_COMPILER_URL -O /tmp/a.zip \
-  && unzip /tmp/a.zip -d /opt  \
-  && rm /tmp/a.zip \
-  && rm -rf /var/lib/apt/lists/*
+# Upload build.gradle script
+COPY build.gradle /usr/share/java/build.gradle
 
-ENV PATH $PATH:/opt/kotlinc/bin
+# The command below downloads the dependencies and stores them in the machine memory.
+# It should NOT be removed because it will be used to run kotlin code in the coderunner.
+RUN cd /usr/share/java \
+    && gradle build

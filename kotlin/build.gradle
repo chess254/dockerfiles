@@ -1,0 +1,23 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: "/usr/share/java", include: "*.jar")
+    implementation platform("org.jetbrains.kotlin:kotlin-bom")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$System.env.JACKSON_VERSION"
+}
+
+sourceSets {
+    main.kotlin.srcDirs += '.'
+}
+
+application {
+    mainClassName = 'MainKt'
+}
