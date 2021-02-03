@@ -5,10 +5,12 @@ RUN npm install -g --unsafe-perm=true \
     async \
     axios \
     chai \
+    chai-http \
     co \
     connect \
     crypto-js \
     debug \
+    express \
     forever \
     futil \
     http \

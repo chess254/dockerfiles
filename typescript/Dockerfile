@@ -4,6 +4,7 @@ FROM codesignal/js:v8.0.1
 RUN npm install -g \
     ts-node \
     typescript \
-    @types/chai \
+    @types/chai \ 
+    @types/express \
     @types/node \
     @types/mocha
