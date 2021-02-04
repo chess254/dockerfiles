@@ -1,4 +1,4 @@
-FROM codesignal/js:v8.0.1
+FROM codesignal/js:v8.1.0
 
 # Install CoffeeScript
 RUN npm install -g coffeescript@next
