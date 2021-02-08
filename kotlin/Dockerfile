@@ -6,4 +6,4 @@ COPY build.gradle /usr/share/java/build.gradle
 # The command below downloads the dependencies and stores them in the machine memory.
 # It should NOT be removed because it will be used to run kotlin code in the coderunner.
 RUN cd /usr/share/java \
-    && gradle build
+    && gradle build --build-cache
