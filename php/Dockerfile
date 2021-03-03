@@ -24,5 +24,5 @@ RUN ./composer global require phpunit/phpunit=9.3 \
 # Expose phpunit to PATH and clean up. COMPOSER_HOME_PATH - is a directory, where composer installed the packages
 RUN COMPOSER_HOME_PATH=$(./composer global config bin-dir --absolute) \
   && sudo ln -s ${COMPOSER_HOME_PATH}/phpunit phpunit \
-  && export PATH=${COMPOSER_HOME_PATH}:$PATH
+  && export PATH=${COMPOSER_HOME_PATH}:$PATH \
   && rm -rf composer
