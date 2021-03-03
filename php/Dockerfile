@@ -23,7 +23,7 @@ RUN ./composer global require phpunit/phpunit=9.3 \
   && ./composer global require guzzlehttp/guzzle=6.3 
 
 # COMPOSER_HOME_PATH - is a directory, where composer installed the packages
-ENV COMPOSER_HOME_PATH=$(./composer global config bin-dir --absolute)
+ENV COMPOSER_HOME_PATH $(./composer global config bin-dir --absolute)
 
 # Expose phpunit to PATH and clean up. 
 # Adding symbolic link to run filesystem tests `phpunit tests --test-suffix=.php`
