@@ -8,6 +8,7 @@ RUN add-apt-repository ppa:ondrej/php \
     php8.0-curl \
     php8.0-mysql \
     php8.0-xml \
+    php8.0-mbstring \
   && rm -rf /var/lib/apt/lists/*
 
 # Install composer 
