@@ -69,7 +69,7 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * js
     * coffeescript
     * typescript
-  * julia-1
+  * julia
   * lisp
   * lua
   * nim
