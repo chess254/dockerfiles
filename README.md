@@ -72,6 +72,8 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * julia
   * lisp
   * lua
+  * mssql
+  * mysql
   * nim
   * objective-c
   * ocaml
@@ -87,6 +89,5 @@ Check out [build dependencies](#build-tree) to figure out if the image you're up
   * smalltalk
   * swift
   * tcl
-  * mysql
-  * mssql
+
 * galen
