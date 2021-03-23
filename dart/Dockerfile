@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v8.0.1
+FROM codesignal/ubuntu-base:v9.0.0
 
 #Install Dart 1.24.2
 RUN apt-get update \
