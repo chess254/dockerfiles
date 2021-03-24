@@ -21,15 +21,6 @@ RUN apt-get update \
     && rm /opt/gradle-6.7-bin.zip \
     && rm -rf /var/lib/apt/lists/*
 
-# install maven
-RUN wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -P /opt/ \
-    && mkdir /opt/maven \
-    && tar -xzf /opt/apache-maven-3.6.3-bin.tar.gz -C /opt/maven --strip-components 1 \
-    && apt-get autoremove -qq -y \
-    && apt-get autoclean \
-    && rm /opt/apache-maven-3.6.3-bin.tar.gz \
-    && rm -rf /var/lib/apt/lists/*
-
 #install javafx
 RUN apt-get update \
     && apt-get install -y --no-install-recommends unzip \
@@ -42,15 +33,16 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
-    M2_HOME=/opt/maven \
-    MAVEN_HOME=/opt/maven \
     PATH_TO_FX=/opt/javafx/javafx-sdk-11.0.2/lib \
     JAVA_HOME=/usr/lib/jvm/java-15-oracle \
     PATH=$M2_HOME/bin:/opt/gradle/gradle-6.7/bin:$PATH \
-    JACKSON_VERSION='2.12.1'
+    JACKSON_VERSION='2.12.2' \
+    MYSQL_CONNECTOR_JAVA_VERSION='8.0.23'
 
-# download dependencies from maven repository with build.gradle script
+# Upload build.gradle script
 COPY build.gradle /usr/share/java/build.gradle
+
+# The command below downloads the dependencies and stores them in the machine memory.
+# It should NOT be removed because it will be used to run kotlin code in the coderunner.
 RUN cd /usr/share/java \
-    && gradle download \
-    && rm build.gradle
+    && gradle build --build-cache

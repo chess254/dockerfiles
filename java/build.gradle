@@ -1,19 +1,19 @@
-apply plugin: 'base'
+plugins {
+    id 'application'
+}
 
 repositories {
     mavenCentral()
 }
 
-configurations {
-    toCopy
-}
-
 dependencies {
-    toCopy "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$System.env.JACKSON_VERSION"
-    toCopy "mysql:mysql-connector-java:8.0.22"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$System.env.JACKSON_VERSION"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:$System.env.JACKSON_VERSION"
+    implementation "mysql:mysql-connector-java:$System.env.MYSQL_CONNECTOR_JAVA_VERSION"
 }
 
-task download(type: Copy) {
-    from configurations.toCopy
-    into '/usr/share/java'
+mainClassName = 'Solution'
+
+sourceSets {
+    main.java.srcDir "."
 }
