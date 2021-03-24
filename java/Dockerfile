@@ -21,6 +21,15 @@ RUN apt-get update \
     && rm /opt/gradle-6.7-bin.zip \
     && rm -rf /var/lib/apt/lists/*
 
+# install maven
+RUN wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -P /opt/ \
+    && mkdir /opt/maven \
+    && tar -xzf /opt/apache-maven-3.6.3-bin.tar.gz -C /opt/maven --strip-components 1 \
+    && apt-get autoremove -qq -y \
+    && apt-get autoclean \
+    && rm /opt/apache-maven-3.6.3-bin.tar.gz \
+    && rm -rf /var/lib/apt/lists/*
+
 #install javafx
 RUN apt-get update \
     && apt-get install -y --no-install-recommends unzip \
