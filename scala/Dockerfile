@@ -1,4 +1,4 @@
-FROM codesignal/java:v8.0.4
+FROM codesignal/java:v9.0.0
 
 RUN apt-get update \
     && wget https://www.scala-lang.org/files/archive/scala-2.12.10.deb \
