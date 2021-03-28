@@ -42,6 +42,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
+    M2_HOME=/opt/maven \
+    MAVEN_HOME=/opt/maven \
     PATH_TO_FX=/opt/javafx/javafx-sdk-11.0.2/lib \
     JAVA_HOME=/usr/lib/jvm/java-15-oracle \
     PATH=$M2_HOME/bin:/opt/gradle/gradle-6.7/bin:$PATH \
