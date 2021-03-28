@@ -1,7 +1,7 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.4.31'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.31'
-    id 'application'
+    id "org.jetbrains.kotlin.jvm" version System.env.KOTLIN_VERSION
+    id "org.jetbrains.kotlin.plugin.serialization" version System.env.KOTLIN_VERSION
+    id "application"
 }
 
 repositories {
@@ -21,9 +21,9 @@ dependencies {
 }
 
 sourceSets {
-    main.kotlin.srcDirs += '.'
+    main.kotlin.srcDirs += "."
 }
 
 application {
-    mainClassName = 'MainKt'
+    mainClassName = "MainKt"
 }
