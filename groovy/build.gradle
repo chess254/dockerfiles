@@ -1,0 +1,21 @@
+plugins {
+    id "application"
+    id "groovy"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:$System.env.JACKSON_VERSION"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$System.env.JACKSON_VERSION"
+    implementation "mysql:mysql-connector-java:$System.env.MYSQL_CONNECTOR_JAVA_VERSION"
+    implementation "org.codehaus.groovy:groovy-all:$System.env.GROOVY_VERSION"
+}
+
+mainClassName = 'Main'
+
+sourceSets {
+    main.groovy.srcDir "."
+}
