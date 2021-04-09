@@ -1,4 +1,4 @@
-FROM codesignal/java:v9.0.0
+FROM codesignal/java:java-gradle
 
 ENV GROOVY_VERSION 3.0.7
 
