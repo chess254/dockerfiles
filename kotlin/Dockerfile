@@ -1,4 +1,4 @@
-FROM codesignal/java:v8.1.2
+FROM codesignal/java:java-gradle
 
 # Upload build.gradle script
 COPY build.gradle /usr/share/java
