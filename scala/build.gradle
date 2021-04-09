@@ -10,6 +10,7 @@ repositories {
 dependencies {
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:$System.env.JACKSON_VERSION"
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$System.env.JACKSON_VERSION"
+    implementation "com.google.protobuf:protobuf-java:3.7.0."
     implementation "mysql:mysql-connector-java:$System.env.MYSQL_CONNECTOR_JAVA_VERSION"
     implementation "org.scala-lang:scala-compiler:$System.env.SCALA_VERSION"
     implementation "org.scala-lang:scala-library:$System.env.SCALA_VERSION"
