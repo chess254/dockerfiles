@@ -14,7 +14,9 @@ dependencies {
     implementation "org.codehaus.groovy:groovy-all:$System.env.GROOVY_VERSION"
 }
 
-mainClassName = 'Main'
+application {
+    mainClassName = 'Main'
+}
 
 sourceSets {
     main.groovy.srcDir "."
