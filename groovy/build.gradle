@@ -15,7 +15,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'Main'
+    mainClassName = 'Solution'
 }
 
 sourceSets {
