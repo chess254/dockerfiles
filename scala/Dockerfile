@@ -1,6 +1,6 @@
 FROM codesignal/java:java-gradle
 
-ENV SCALA_VERSION='2.13.5'
+ENV SCALA_VERSION='2.12.10'
 
 # Upload build.gradle script
 COPY build.gradle /usr/share/java/build.gradle
