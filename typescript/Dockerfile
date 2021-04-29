@@ -8,4 +8,5 @@ RUN npm install -g \
     @types/chai \ 
     @types/express \
     @types/node \
-    @types/mocha
+    @types/mocha 
+    
