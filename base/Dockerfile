@@ -13,18 +13,18 @@ RUN echo 'tzdata tzdata/Areas select Etc' | debconf-set-selections \
 RUN apt-get clean \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-    bc \
-    locales \
-    build-essential \
-    curl \
-    wget \
-    apt-transport-https \
-    apt-utils \
-    xz-utils \
-    gnupg \
-    ca-certificates \
-    python-dev \
-    lsb-release \
+        bc \
+        locales \
+        build-essential \
+        curl \
+        wget \
+        apt-transport-https \
+        apt-utils \
+        xz-utils \
+        gnupg \
+        ca-certificates \
+        python-dev \
+        lsb-release \
     && rm -rf /var/lib/apt/lists/* \
     && locale-gen en_US.UTF-8
 
@@ -74,12 +74,12 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
     && add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2019.list)" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-    mysql-client-5.7 \
-    libmysqlclient-dev \
-    libpq-dev \
-    libpq5 \
-    libssl-dev \
-    postgresql-client-13 \
+        mysql-client-5.7 \
+        libmysqlclient-dev \
+        libpq-dev \
+        libpq5 \
+        libssl-dev \
+        postgresql-client-13 \
     && ACCEPT_EULA=Y apt-get install -y mssql-tools \
     && rm -rf /var/lib/apt/lists/*
 
