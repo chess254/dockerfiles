@@ -18,6 +18,7 @@ RUN npm install -g --unsafe-perm=true \
     lodash \
     mocha \
     mongodb \
+    mongoose \
     mysql \
     mysql2 \
     node-fetch \
