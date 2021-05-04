@@ -31,11 +31,11 @@ RUN apt-get clean \
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # Install nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 ENV NVM_DIR /root/.nvm
 
 # Install Node with nvm
-ENV NODE_VERSION 14.14.0
+ENV NODE_VERSION 14.16.1
 RUN . $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 ENV NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
@@ -72,7 +72,7 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
 RUN curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
     && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
     && apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y mongodb-org=4.4.3 \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y mongodb-org=4.4.5 \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/lib/mongodb
 
