@@ -27,3 +27,7 @@ sourceSets {
 application {
     mainClassName = 'MainKt'
 }
+
+compileKotlin {
+    kotlinOptions.allWarningsAsErrors = false
+}
