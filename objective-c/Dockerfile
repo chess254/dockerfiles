@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.0.0
+FROM codesignal/ubuntu-base:v9.2.0
 
 # Set helper env variables
 ENV GNUSTEP_UBUNTU_VERSION="ubuntu-20.04-clang-10.0-runtime-2.0"

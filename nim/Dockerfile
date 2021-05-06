@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.0.0
+FROM codesignal/ubuntu-base:v9.2.0
 
 # Install Nim
 RUN curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -y

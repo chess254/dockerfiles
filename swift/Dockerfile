@@ -1,7 +1,7 @@
-FROM codesignal/ubuntu-base:v9.0.0
+FROM codesignal/ubuntu-base:v9.2.0
 
-ENV SWIFT_BRANCH=swift-5.3.3-release \
-    SWIFT_VERSION=swift-5.3.3-RELEASE \
+ENV SWIFT_BRANCH=swift-5.4-release \
+    SWIFT_VERSION=swift-5.4-RELEASE \
     SWIFT_PLATFORM=ubuntu20.04 \
     SWIFT_PLATFORM_FOLDER=ubuntu2004
 
