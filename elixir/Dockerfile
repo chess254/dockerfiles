@@ -1,4 +1,4 @@
-FROM codesignal/erlang:v9.0.0
+FROM codesignal/erlang:v9.2.0
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends elixir \
