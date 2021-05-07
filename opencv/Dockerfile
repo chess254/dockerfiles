@@ -1,6 +1,6 @@
-FROM codesignal/cpp:v9.0.0
+FROM codesignal/cpp:v9.2.0
 
-ENV OPENCV_VERSION=4.5.1
+ENV OPENCV_VERSION=4.5.2
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
   && apt-get update \
