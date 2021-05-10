@@ -71,7 +71,7 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
     && echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && wget -qO- https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2019.list)" \
+    && add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         mysql-client-5.7 \
