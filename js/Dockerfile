@@ -31,4 +31,7 @@ RUN npm install -g --unsafe-perm=true \
     underscore \
     validator  \
     when \
-    ws
+    ws \
+    ipaddr.js \
+    ip-to-int \
+    ip-router
