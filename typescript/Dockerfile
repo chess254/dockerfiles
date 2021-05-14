@@ -1,4 +1,4 @@
-FROM codesignal/js:v9.1.0
+FROM codesignal/js:v9.2.1
 
 # Install TypeScript and testing libraries
 RUN npm install -g \

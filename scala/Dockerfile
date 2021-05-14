@@ -1,8 +1,10 @@
 FROM codesignal/java:v9.0.0
 
+ENV SCALA_VERSION=2.12.10
+
 RUN apt-get update \
-    && wget https://www.scala-lang.org/files/archive/scala-2.12.10.deb \
-    && dpkg -i scala-2.12.10.deb \
+    && wget https://www.scala-lang.org/files/archive/scala-${SCALA_VERSION}.deb \
+    && dpkg -i scala-${SCALA_VERSION}.deb \
     && apt-get update \
     && apt-get install -y scala \
-    && rm -rf scala-2.12.5.deb  /var/lib/apt/lists/*
+    && rm -rf scala-${SCALA_VERSION}.deb  /var/lib/apt/lists/*

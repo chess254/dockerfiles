@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.0.0
+FROM codesignal/ubuntu-base:v9.2.0
 
 # Installing necessary libraries for puppeteer and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
 # Note: list of the libs is taken from: https://oofnivek.medium.com/ubuntu-install-puppeteer-bd551d6e5fc1

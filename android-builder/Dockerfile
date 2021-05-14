@@ -1,6 +1,6 @@
 # We can't use codesignal/java as a base image
 # See https://github.com/CodeSignal/dockerfiles/pull/174#issuecomment-653254590
-FROM codesignal/ubuntu-base:v9.0.0
+FROM codesignal/ubuntu-base:v9.2.0
 
 # Install some dependencies
 RUN dpkg --add-architecture i386 \

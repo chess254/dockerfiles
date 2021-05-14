@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.0.0
+FROM codesignal/ubuntu-base:v9.2.0
 
 # Following installation steps from https://cran.r-project.org/bin/linux/ubuntu/
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 51716619E084DAB9 \

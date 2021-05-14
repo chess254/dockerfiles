@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.0.0
+FROM codesignal/ubuntu-base:v9.2.0
 
 # Install required dependencies for Ruby and ruby-build
 # https://github.com/rbenv/ruby-build/wiki#ubuntudebianmint
@@ -19,13 +19,15 @@ RUN apt-get -qq update \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
+ENV RUBY_VERSION=3.0.1
+
 # Install ruby-build and build Ruby
 RUN git clone https://github.com/rbenv/ruby-build.git \
     && PREFIX=/usr/local ./ruby-build/install.sh \
-    && ruby-build 2.7.2 /usr/local/ruby-2.7.2
+    && ruby-build ${RUBY_VERSION} /usr/local/ruby-${RUBY_VERSION}
 
 # Update path to include Ruby
-ENV PATH=/usr/local/ruby-2.7.2/bin:$PATH
+ENV PATH=/usr/local/ruby-${RUBY_VERSION}/bin:$PATH
 
 # Install dependencies
 RUN gem install \
