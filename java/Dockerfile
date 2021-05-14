@@ -57,7 +57,7 @@ ENV CLASSPATH=/usr/share/java/*:$CLASSPATH \
     MAVEN_HOME=/opt/maven \
     PATH_TO_FX=/opt/javafx/javafx-sdk-${OPENJFX_VERSION}/lib \
     JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-oracle \
-    PATH=$M2_HOME/bin:/opt/gradle/gradle-${GRADLE_VERSION}/bin:$PATH
+    PATH=/opt/maven/bin:/opt/gradle/gradle-${GRADLE_VERSION}/bin:$PATH
 
 # download dependencies from maven repository with build.gradle script
 COPY build.gradle /usr/share/java/build.gradle
