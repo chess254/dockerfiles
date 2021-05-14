@@ -72,6 +72,8 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && wget -qO- https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
     && add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)" \
+    && wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
+    && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         mysql-client-5.7 \
@@ -80,6 +82,7 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
         libpq5 \
         libssl-dev \
         postgresql-client-13 \
+        mongodb-org-shell \
     && ACCEPT_EULA=Y apt-get install -y mssql-tools \
     && rm -rf /var/lib/apt/lists/*
 
