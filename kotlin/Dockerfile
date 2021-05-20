@@ -1,4 +1,4 @@
-FROM codesignal/java:v9.2.0
+FROM codesignal/java:v9.2.1
 
 ENV KOTLIN_VERSION=1.4.10
 

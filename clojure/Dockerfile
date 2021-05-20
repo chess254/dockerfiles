@@ -1,4 +1,4 @@
-FROM codesignal/java:v9.2.0
+FROM codesignal/java:v9.2.1
 
 ENV CLOJURE_VERSION=1.10.2.774
 

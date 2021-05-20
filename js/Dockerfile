@@ -14,6 +14,9 @@ RUN npm install -g --unsafe-perm=true \
     forever \
     futil \
     http \
+    ip-router \
+    ip-to-int \
+    ipaddr.js \
     jquery \
     lodash \
     mocha \
@@ -31,7 +34,4 @@ RUN npm install -g --unsafe-perm=true \
     underscore \
     validator  \
     when \
-    ws \
-    ipaddr.js \
-    ip-to-int \
-    ip-router
+    ws
