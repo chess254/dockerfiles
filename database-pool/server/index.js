@@ -1,7 +1,10 @@
 const http = require('http');
 const { spawn } = require('child_process');
 
-const PORT = process.env.DB_POOL_PORT || 8080;
+const PORT = process.env.DB_POOL_PORT;
+if (!PORT) {
+  throw new Error('DB_POOL_PORT env variable must not be empty');
+}
 
 const scripts = {
   mongo: {
