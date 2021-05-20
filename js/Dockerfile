@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.2.0
+FROM codesignal/ubuntu-base:new
 
 # Node and npm are already inherited from ubuntu-base.
 RUN npm install -g --unsafe-perm=true \
@@ -22,9 +22,11 @@ RUN npm install -g --unsafe-perm=true \
     mocha \
     mongodb \
     mongoose \
+    mssql \
     mysql \
     mysql2 \
     node-fetch \
+    pg \
     rambda \
     request \
     rxjs \
