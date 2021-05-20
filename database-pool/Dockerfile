@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:dev
+FROM codesignal/ubuntu-base:new
 
 # Install mysql server
 RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list \
