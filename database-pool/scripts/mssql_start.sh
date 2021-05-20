@@ -32,6 +32,7 @@ GRANT CONTROL ON DATABASE::test TO test;
 -- sysadmin role is required for raiserror with log command
 -- which we use in the template to terminate the execution
 exec sp_addsrvrolemember 'test', 'sysadmin';
+ALTER LOGIN test ENABLE;
 GO
 END
 fi
