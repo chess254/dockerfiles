@@ -40,8 +40,8 @@ RUN rm -f /usr/bin/g++ \
 # Creating object file for C++ unit tests
 RUN mkdir -p /catch2-utils \
   && cd /catch2-utils \
-  && echo "#define CATCH_CONFIG_MAIN" > testsRunner.cpp \
-  && echo "#include <catch2/catch.hpp>" >> testsRunner.cpp \
-  && g++ -std=c++20 -I/usr/local/include/catch2 testsRunner.cpp -c \
-  && rm testsRunner.cpp \
-  && g++ -std=c++20 testsRunner.o -o catch2Version
+  && echo "#define CATCH_CONFIG_MAIN" > tests_runner.cpp \
+  && echo "#include <catch2/catch.hpp>" >> tests_runner.cpp \
+  && g++ -std=c++20 -I/usr/local/include/catch2 tests_runner.cpp -c \
+  && rm tests_runner.cpp \
+  && g++ -std=c++20 tests_runner.o -o catch2Version
