@@ -34,13 +34,20 @@ RUN mkdir temp \
 
 ENV PATH /opt/python/${PYTHON_VERSION}/bin:$PATH
 
+
+RUN python3 -m pip install \
+  # Pin numpy to match tensorflow's dependency.
+  # Must be installed first to fix potential conflict with shap numpy version:
+  # https://github.com/slundberg/shap/pull/1802#issuecomment-846299228
+  numpy==1.19.5 \
+  # Install keras first to avoid dependency conflict with eli5.
+  keras
+
 RUN python3 -m pip install \
   pathlib \
-  numpy \
   scipy \
   pandas \
   scikit-learn \
-  keras \
   nltk \
   requests \
   configparser \
@@ -71,6 +78,8 @@ RUN python3 -m pip install \
   xgboost \
   basilica \
   tensorflow \
+  # Installed as an optional peer dependency of gensim
+  python-Levenshtein \
   gensim \
   category_encoders \
   timeout_decorator \
