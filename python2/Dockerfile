@@ -44,7 +44,9 @@ RUN python -m pip install \
   nltk==3.4.5 \
   requests \
   configparser \
-  mysql-connector-python \
+  # Python 2.7 support dropped in 8.0.24:
+  # https://github.com/mysql/mysql-connector-python/blob/master/CHANGES.txt
+  mysql-connector-python==8.0.23 \
   MySql-Python \
   SQLAlchemy \
   psycopg2 \
