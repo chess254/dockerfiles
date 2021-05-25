@@ -74,9 +74,12 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
     && add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)" \
     && wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
     && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
+    && wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb -P /tmp/ \
+    && dpkg -i /tmp/mysql-apt-config_0.8.13-1_all.deb \
+    && rm -rf /tmp/* \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        mysql-client-5.7 \
+        mysql-client \
         libmysqlclient-dev \
         libpq-dev \
         libpq5 \

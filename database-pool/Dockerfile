@@ -1,31 +1,27 @@
 FROM codesignal/ubuntu-base:new
 
-# Install mysql server
-RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "mysql-server mysql-server/root_password password root" | debconf-set-selections \
-    && echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections \
+RUN echo "mysql-apt-config	mysql-apt-config/select-server select mysql-8.0" | debconf-set-selections \
+    && echo "mysql-apt-config	mysql-apt-config/select-product select OK" | debconf-set-selections \
+    && echo "mysql-community-server mysql-community-server/root-pass password root" | debconf-set-selections \
+    && echo "mysql-community-server mysql-community-server/re-root-pass password root" | debconf-set-selections \
     && echo "mysql-server mysql-server/lowercase-table-names select Enabled" | debconf-set-selections \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        libmysqlclient-dev  \
-        libpq-dev \
-        libpq5 \
-        libssl-dev \
-        mysql-server-5.7 \
+       debconf-utils \
+       mysql-server \
     && mkdir -p /var/lib/mysql \
     && mkdir -p /var/run/mysqld \
     && mkdir -p /var/log/mysql \
     && chown -R mysql:mysql /var/lib/mysql \
     && chown -R mysql:mysql /var/run/mysqld \
-    && chown -R mysql:mysql /var/log/mysql\
-    # UTF-8 and bind-address
+    && chown -R mysql:mysql /var/log/mysql \
+# UTF-8 and bind-address
     && sed -i -e "$ a [client]\n\n[mysql]\n\n[mysqld]"  /etc/mysql/my.cnf \
     && sed -i -e "s/\(\[client\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf \
     && sed -i -e "s/\(\[mysql\]\)/\1\ndefault-character-set = utf8/g" /etc/mysql/my.cnf \
     && sed -i -e "s/\(\[mysqld\]\)/\1\ninit_connect='SET NAMES utf8'\ncharacter-set-server = utf8\ncollation-server=utf8_unicode_ci\nbind-address = 0.0.0.0/g" /etc/mysql/my.cnf \
-    && echo "mysql ALL = NOPASSWD: /usr/sbin/service mysql start" | cat >> /etc/sudoers \
-    # Clean up
-    && apt-get autoremove \
+# Clean up
+    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install mongodb server
