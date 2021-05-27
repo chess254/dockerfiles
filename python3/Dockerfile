@@ -84,6 +84,7 @@ RUN python3 -m pip install \
   category_encoders \
   timeout_decorator \
   Django \
+  sortedcontainers \
   && python3 -m spacy download en_core_web_sm
 
 # Removing python symlink for python2 and adding for python3 
