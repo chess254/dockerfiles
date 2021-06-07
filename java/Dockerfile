@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.2.0
+FROM codesignal/ubuntu-base:new
 
 # Java
 ENV ORACLE_LICENSE_VERSION=v1-2
