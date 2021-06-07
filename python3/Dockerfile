@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.2.0
+FROM codesignal/ubuntu-base:new
 
 ENV PYTHON_VERSION 3.9.5
 
@@ -85,6 +85,7 @@ RUN python3 -m pip install \
   timeout_decorator \
   Django \
   sortedcontainers \
+  pymssql \
   && python3 -m spacy download en_core_web_sm
 
 # Removing python symlink for python2 and adding for python3 
