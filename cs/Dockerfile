@@ -1,4 +1,4 @@
-FROM codesignal/ubuntu-base:v9.2.0
+FROM codesignal/ubuntu-base:new
 
 # libpng12-0 is required as a dependency for some Mono packages, but cannot be installed by default on Ubuntu 20.
 # Fix it using this workaround: https://www.linuxuprising.com/2018/05/fix-libpng12-0-missing-in-ubuntu-1804.html
