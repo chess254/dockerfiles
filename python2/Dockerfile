@@ -76,4 +76,5 @@ RUN python -m pip install \
   tensorflow==2.0.0 \
   timeout_decorator \
   Django \
+  sortedcontainers \
   && python -m spacy download en_core_web_sm
