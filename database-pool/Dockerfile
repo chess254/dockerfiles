@@ -53,6 +53,9 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg ma
         postgresql-13-postgis-2.5 \
     && rm -rf /var/lib/apt/lists/*
 
+COPY pg_hba.conf /etc/postgresql/13/main/pg_hba.conf
+COPY pg.conf /etc/postgresql/13/main/conf.d/pg.conf
+
 # Installing Microsoft SQL Server
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
     && add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)" \
